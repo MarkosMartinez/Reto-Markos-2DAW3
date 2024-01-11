@@ -1,0 +1,47 @@
+version: '3.5'
+services:
+  apache:
+    #httpd:2.4
+    image: httpd:latest
+    volumes:
+      - ./ficheros-web/:/usr/local/apache2/htdocs/
+    ports:
+      - "8081:80"
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "8080:80"
+    depends_on:
+      - apache
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_USER: sail
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: reto_markos
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+  # Aqui iran los 2 servidores de laravel! (8182 y 8183?)
+
+  laravelapi:
+    image: markosmartinez/laravelpassport-php8.2
+    volumes:
+      - ./Reto-Markos-APIWeb/:/var/www/html/
+    ports:
+      - "81:8000"
+    depends_on:
+      - mysql
+
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - 82:80
+    environment:
+      - PMA_HOST=mysql
+    depends_on:
+      - mysql
