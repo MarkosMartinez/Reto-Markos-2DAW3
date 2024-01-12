@@ -5,15 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reto - Markos Martinez</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="assets/css/mapa.css">
 </head>
 
 <body>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
     <!--Autenticacion-->
     <form id="form_login" onsubmit="event.preventDefault(); loguearse(correo_login.value, contrasena_login.value);">
         <div id="login_incorrecto" style="display: none;">Login incorrecto!</div>
         <input type="email" name="correo_login" id="correo_login" placeholder="Correo" required>
         <input type="password" name="contrasena_login" id="contrasena_login" placeholder="Contraseña" required>
         <input type="submit" id="btn_login" value="Iniciar Sesión">
+        <label id="lbl_checksesion" style="display: none;">Comprobando sesion...</label>
         <p id="lbl_registro" onclick="cambiarauth(1)">Registrarte!</p>
     </form>
 
@@ -34,12 +40,15 @@
     <!--Mapa-->
     <div id="mapa" style="display: none;">
         <h1>Mapa!</h1>
+        <div id="contMapa"></div>
+
     </div>
     <!--Fin Mapa-->
 
     <!--Fin Contenido-->
 
-    <script src="login.js"></script>
+    <script src="assets/js/login.js"></script>
+    <script src="assets/js/mapa.js"></script>
 
 </body>
 
