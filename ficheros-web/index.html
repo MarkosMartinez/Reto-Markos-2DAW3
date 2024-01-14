@@ -5,22 +5,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reto - Markos Martinez</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="assets/css/menu.css">
+    <link rel="stylesheet" href="assets/css/login.css">
     <link rel="stylesheet" href="assets/css/mapa.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
 <body>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+    <!--NavBar-->
+    <nav class="navbar">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="https://getbootstrap.com/docs/5.2/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+            Bootstrap
+          </a>
+        </div>
+      </nav>
+      <!--Fin NavBar-->
 
     <!--Autenticacion-->
-    <form id="form_login" onsubmit="event.preventDefault(); loguearse(correo_login.value, contrasena_login.value);">
+    <form id="form_login" class="form_login" onsubmit="event.preventDefault(); loguearse(correo_login.value, contrasena_login.value);">
         <div id="login_incorrecto" style="display: none;">Login incorrecto!</div>
-        <input type="email" name="correo_login" id="correo_login" placeholder="Correo" required>
-        <input type="password" name="contrasena_login" id="contrasena_login" placeholder="Contraseña" required>
-        <input type="submit" id="btn_login" value="Iniciar Sesión">
+        <div class="flex-column">
+          <label>Email </label></div>
+          <div class="inputForm">
+            <img class="img-fluid" src="assets/img/iconos/arroba.svg" width="20" height="20">
+            <input type="email" name="correo_login" id="correo_login" class="input_login" placeholder="Correo" required>
+          </div>
+        
+        <div class="flex-column">
+          <label>Password </label></div>
+          <div class="inputForm">
+            <img class="img-fluid" src="assets/img/iconos/arroba.svg" width="20" height="20">
+            <input type="password" name="contrasena_login" id="contrasena_login" class="input_login" placeholder="Contraseña" required>
+            <!--TODO Hacer que funcione-->
+            <img class="img-fluid" src="assets/img/iconos/ojo.svg" width="20" height="20">
+          </div>
+        
+        <div class="flex-row">
+          <div>
+          <input type="checkbox">
+          <!--TODO Hacer que funcione-->
+          <label>Recordar sesion</label>
+          </div>
+        </div>
+        <input type="submit" id="btn_login" class="button-submit" value="Iniciar Sesión">
+        <p id="lbl_registro" class="p" onclick="cambiarauth(1)">No tienes cuenta? Registrarte!</p>
         <label id="lbl_checksesion" style="display: none;">Comprobando sesion...</label>
-        <p id="lbl_registro" onclick="cambiarauth(1)">Registrarte!</p>
     </form>
 
     <form id="form_registro" style="display: none;" onsubmit="event.preventDefault(); registrarse(nombre_registro.value, correo_registro.value, contrasena_registro.value, confirmar_contrasena_registro.value);">
@@ -36,9 +71,9 @@
 
 
     <!--Contenido-->
-    <button onclick="cerrar_sesion()" id="btn_cerrar_sesion" style="display: none;">Cerrar Sesión</button>
+    <button onclick="cerrar_sesion()" class="btn btn-danger" id="btn_cerrar_sesion" style="display: none;">Cerrar Sesión</button>
     <!--Mapa-->
-    <div id="mapa" style="display: none;">
+    <div id="mapa" style="visibility: hidden;">
         <h1>Mapa!</h1>
         <div id="contMapa"></div>
 
@@ -47,9 +82,11 @@
 
     <!--Fin Contenido-->
 
+
     <script src="assets/js/login.js"></script>
     <script src="assets/js/mapa.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
 </html>

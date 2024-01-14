@@ -116,7 +116,7 @@ const laravelApi = "http://localhost:81";
         function logueo_correcto(){
             form_login.style.display = "none";
             form_registro.style.display = "none";
-            mapa.style.display = "block";
+            mapa.style.visibility = "visible";
             login_incorrecto.style.display = "none";
             register_incorrecto.style.disabled = "none";
             btn_cerrar_sesion.style.display = "block";
@@ -136,7 +136,7 @@ const laravelApi = "http://localhost:81";
         async function cerrar_sesion(){
             let token_anterior = sessionStorage.getItem("token");
             form_login.style.display = "block";
-            mapa.style.display = "none";
+            mapa.style.visibility = "hidden";
             btn_cerrar_sesion.style.display = "none";
             sessionStorage.clear();
             localStorage.clear();
