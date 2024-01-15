@@ -17,14 +17,30 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
     <!--NavBar-->
-    <nav class="navbar">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-            <img src="https://getbootstrap.com/docs/5.2/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-            Bootstrap
-          </a>
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar temporal?</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <!-- <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Prueba</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Prueba</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Prueba</a>
+            </li> -->
+          </ul>
+          <span class="navbar-text">
+            <button onclick="cerrar_sesion()" class="btn btn-danger" id="btn_cerrar_sesion" style="display: none;">Cerrar Sesión</button>
+          </span>
         </div>
-      </nav>
+      </div>
+    </nav>
       <!--Fin NavBar-->
 
     <!--Autenticacion-->
@@ -40,7 +56,7 @@
         <div class="flex-column">
           <label>Password </label></div>
           <div class="inputForm">
-            <img class="img-fluid" src="assets/img/iconos/arroba.svg" width="20" height="20">
+            <img class="img-fluid" src="assets/img/iconos/candado.svg" width="20" height="20">
             <input type="password" name="contrasena_login" id="contrasena_login" class="input_login" placeholder="Contraseña" required>
             <!--TODO Hacer que funcione-->
             <img class="img-fluid" src="assets/img/iconos/ojo.svg" width="20" height="20">
@@ -49,37 +65,67 @@
         <div class="flex-row">
           <div>
           <input type="checkbox">
-          <!--TODO Hacer que funcione-->
+          <!--TODO Hacer que funcione?-->
           <label>Recordar sesion</label>
           </div>
         </div>
+        <!--TODO Hacer que el disabled se vea mjr-->
         <input type="submit" id="btn_login" class="button-submit" value="Iniciar Sesión">
         <p id="lbl_registro" class="p" onclick="cambiarauth(1)">No tienes cuenta? Registrarte!</p>
-        <label id="lbl_checksesion" style="display: none;">Comprobando sesion...</label>
+        <label id="lbl_checksesion" style="display: none;"><i>Comprobando sesion...</i></label>
     </form>
+    
+    <form id="form_registro" class="form_login" style="display: none;" onsubmit="event.preventDefault(); registrarse(nombre_registro.value, correo_registro.value, contrasena_registro.value, confirmar_contrasena_registro.value);">
+      <div id="register_incorrecto" style="display: none;">Registro incorrecto!</div>
+      <div class="flex-column">
+        <label>Nombre </label></div>
+        <div class="inputForm">
+          <img class="img-fluid" src="assets/img/iconos/nombre.svg" width="20" height="20">
+          <input type="text" name="nombre_registro" id="nombre_registro" class="input_login" placeholder="Nombre" required>
+        </div>
 
-    <form id="form_registro" style="display: none;" onsubmit="event.preventDefault(); registrarse(nombre_registro.value, correo_registro.value, contrasena_registro.value, confirmar_contrasena_registro.value);">
-        <div id="register_incorrecto" style="display: none;">Registro incorrecto!</div>
-        <input type="text" name="nombre_registro" id="nombre_registro" placeholder="Nombre" required>
-        <input type="email" name="correo_registro" id="correo_registro" placeholder="Correo" required>
-        <input type="password" name="contrasena_registro" id="contrasena_registro" placeholder="Contraseña" required>
-        <input type="password" name="confirmar_contrasena_registro" id="confirmar_contrasena_registro" placeholder="Contraseña" required>
-        <input type="submit" id="btn_registro" value="Registrarse">
-        <p id="lbl_logueo" onclick="cambiarauth(0)">Ya tienes cuenta? Inicia sesion aqui!</p>
-    </form>
+      <div class="flex-column">
+        <label>Email </label></div>
+        <div class="inputForm">
+          <img class="img-fluid" src="assets/img/iconos/arroba.svg" width="20" height="20">
+          <input type="email" name="correo_registro" id="correo_registro" class="input_login" placeholder="Correo" required>
+        </div>
+
+      <div class="flex-column">
+        <label>Password </label></div>
+        <div class="inputForm">
+          <img class="img-fluid" src="assets/img/iconos/candado.svg" width="20" height="20">
+          <input type="password" name="contrasena_registro" id="contrasena_registro" class="input_login" placeholder="Contraseña" required>
+          <!--TODO Hacer que funcione-->
+          <img class="img-fluid" src="assets/img/iconos/ojo.svg" width="20" height="20">
+        </div>
+
+        <div class="flex-column">
+          <label>Password </label></div>
+          <div class="inputForm">
+            <img class="img-fluid" src="assets/img/iconos/candado.svg" width="20" height="20">
+            <input type="password" name="confirmar_contrasena_registro" id="confirmar_contrasena_registro" class="input_login" placeholder="Confirmar contraseña" required>
+            <!--TODO Hacer que funcione-->
+            <img class="img-fluid" src="assets/img/iconos/ojo.svg" width="20" height="20">
+          </div>
+      
+      <div class="flex-row">
+      </div>
+      <input type="submit" id="btn_registro" class="button-submit btn-disabled" value="Registrarse">
+      <p id="lbl_registro" class="p" onclick="cambiarauth(0)">Ya tienes cuenta? Inicia sesion aqui!</p>
+  </form>
     <!--Fin Autenticacion-->
 
 
     <!--Contenido-->
-    <button onclick="cerrar_sesion()" class="btn btn-danger" id="btn_cerrar_sesion" style="display: none;">Cerrar Sesión</button>
+    <div id="contenido" style="display: none;">
     <!--Mapa-->
-    <div id="mapa" style="visibility: hidden;">
-        <h1>Mapa!</h1>
+    <h1>Mapa!</h1>
+    <div id="mapa">
         <div id="contMapa"></div>
-
     </div>
     <!--Fin Mapa-->
-
+    </div>
     <!--Fin Contenido-->
 
 

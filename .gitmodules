@@ -1,3 +1,6 @@
 [submodule "Reto-Markos-APIWeb"]
 	path = Reto-Markos-APIWeb
 	url = https://github.com/MarkosMartinez/Reto-Markos-APIWeb.git
+[submodule "Reto-Markos-API"]
+	path = Reto-Markos-API
+	url = https://github.com/MarkosMartinez/Reto-Markos-API

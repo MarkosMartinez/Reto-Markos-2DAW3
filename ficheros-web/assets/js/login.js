@@ -76,6 +76,7 @@ const laravelApi = "http://localhost:81";
                 }
             } catch (error) {
                 console.error('Error:', error);
+                logueo_incorrecto();
             }
             btn_login.disabled = false;
         }
@@ -99,6 +100,7 @@ const laravelApi = "http://localhost:81";
                         "Content-type": "application/json; charset=UTF-8"
                     }
                 });
+                console.log(respuesta);
                 let data = await respuesta.json();
                 console.log(data);
                 if(data["success"]){
@@ -109,6 +111,7 @@ const laravelApi = "http://localhost:81";
                 }
             } catch (error) {
                 console.error('Error:', error);
+                registro_incorrecto();
             }
             btn_registro.disabled = false;
         }
@@ -116,13 +119,17 @@ const laravelApi = "http://localhost:81";
         function logueo_correcto(){
             form_login.style.display = "none";
             form_registro.style.display = "none";
-            mapa.style.visibility = "visible";
+            contenido.style.display = "block";
+            cargarMapa();
             login_incorrecto.style.display = "none";
             register_incorrecto.style.disabled = "none";
             btn_cerrar_sesion.style.display = "block";
             correo_login.value = "";
             contrasena_login.value = "";
+            nombre_registro.value = "";
             correo_registro.value = "";
+            contrasena_registro.value = "";
+            confirmar_contrasena_registro.value = "";
             contrasena_registro.value = "";
         }
 
@@ -136,7 +143,7 @@ const laravelApi = "http://localhost:81";
         async function cerrar_sesion(){
             let token_anterior = sessionStorage.getItem("token");
             form_login.style.display = "block";
-            mapa.style.visibility = "hidden";
+            contenido.style.display = "none";
             btn_cerrar_sesion.style.display = "none";
             sessionStorage.clear();
             localStorage.clear();

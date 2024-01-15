@@ -28,7 +28,7 @@ services:
       - "3306:3306"
   # Aqui iran los 2 servidores de laravel! (8182 y 8183?)
 
-  laravelapi:
+  laravelapiweb:
     image: markosmartinez/laravelpassport-php8.2
     restart: unless-stopped
     volumes:
@@ -37,11 +37,20 @@ services:
       - "81:8000"
     depends_on:
       - mysql
+  laravelapi:
+    image: markosmartinez/laravelpassport-php8.2
+    restart: unless-stopped
+    volumes:
+      - ./Reto-Markos-API/:/var/www/html/
+    ports:
+      - "82:8000"
+    depends_on:
+      - mysql
 
   phpmyadmin:
     image: phpmyadmin
     ports:
-      - 82:80
+      - 83:80
     environment:
       - PMA_HOST=mysql
     depends_on:
