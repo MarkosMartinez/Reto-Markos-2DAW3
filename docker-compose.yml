@@ -7,6 +7,8 @@ services:
       - ./ficheros-web/:/usr/local/apache2/htdocs/
     ports:
       - "8081:80"
+    depends_on:
+      - laravelapiweb
 
   nginx:
     image: nginx:latest
@@ -34,16 +36,21 @@ services:
     restart: unless-stopped
     volumes:
       - ./Reto-Markos-APIWeb/:/var/www/html/
+    environment:
+      USAR_WORKER: 0
     ports:
       - "81:8000"
     depends_on:
       - mysql
+      - laravelapi
 
   laravelapi:
     image: markosmartinez/laravelpassport-php8.2
     restart: unless-stopped
     volumes:
       - ./Reto-Markos-API/:/var/www/html/
+    environment:
+      USAR_WORKER: 1
     ports:
       - "82:8000"
     depends_on:
