@@ -7,6 +7,7 @@ services:
       - ./ficheros-web/:/usr/local/apache2/htdocs/
     ports:
       - "8081:80"
+
   nginx:
     image: nginx:latest
     volumes:
@@ -15,6 +16,7 @@ services:
       - "8080:80"
     depends_on:
       - apache
+      
   mysql:
     image: mysql:latest
     environment:
@@ -26,7 +28,6 @@ services:
       - ./mysql:/var/lib/mysql
     ports:
       - "3306:3306"
-  # Aqui iran los 2 servidores de laravel! (8182 y 8183?)
 
   laravelapiweb:
     image: markosmartinez/laravelpassport-php8.2
@@ -37,6 +38,7 @@ services:
       - "81:8000"
     depends_on:
       - mysql
+
   laravelapi:
     image: markosmartinez/laravelpassport-php8.2
     restart: unless-stopped
