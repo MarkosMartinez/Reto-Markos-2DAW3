@@ -5,6 +5,9 @@ const laravelApi = "http://localhost:81";
             btn_login.disabled = true;
 
             async function comprobar_login(){
+                // logueo_correcto();
+                // lbl_checksesion.style.display = "none";
+                // btn_login.disabled = false;
             if(await comprobar_token(sessionStorage.getItem("token"))){
                 logueo_correcto();
                 lbl_checksesion.style.display = "none";
@@ -41,6 +44,8 @@ const laravelApi = "http://localhost:81";
                 let data = await respuesta.text();
                 if(data == 1){
                     return true;
+                }else{
+                    return false;
                 }
             } catch (error) {
                 console.error('Error:', error);
