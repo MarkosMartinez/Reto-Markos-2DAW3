@@ -1,0 +1,8 @@
+#contMapa{
+    height: 600px;
+}
+
+/*FIXME Cambiar el color del tab active*/
+.nav-link {
+    background-color: red;
+}

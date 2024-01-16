@@ -5,19 +5,19 @@ const laravelApi = "http://localhost:81";
             btn_login.disabled = true;
 
             async function comprobar_login(){
-                // logueo_correcto();
-                // lbl_checksesion.style.display = "none";
-                // btn_login.disabled = false;
-            if(await comprobar_token(sessionStorage.getItem("token"))){
                 logueo_correcto();
                 lbl_checksesion.style.display = "none";
                 btn_login.disabled = false;
-            }else{
-                cerrar_sesion();
-                logueo_incorrecto();
-                lbl_checksesion.style.display = "none";
-                btn_login.disabled = false;
-            }
+            // if(await comprobar_token(sessionStorage.getItem("token"))){
+            //     logueo_correcto();
+            //     lbl_checksesion.style.display = "none";
+            //     btn_login.disabled = false;
+            // }else{
+            //     cerrar_sesion();
+            //     logueo_incorrecto();
+            //     lbl_checksesion.style.display = "none";
+            //     btn_login.disabled = false;
+            // }
         }
             comprobar_login();
         }
@@ -125,7 +125,9 @@ const laravelApi = "http://localhost:81";
             form_login.style.display = "none";
             form_registro.style.display = "none";
             contenido.style.display = "block";
-            cargarMapa();
+            setTimeout(() => {
+                cargarMapa();
+            }, 50);
             login_incorrecto.style.display = "none";
             register_incorrecto.style.disabled = "none";
             btn_cerrar_sesion.style.display = "block";
