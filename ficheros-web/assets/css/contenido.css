@@ -6,3 +6,11 @@
 .nav-link {
     background-color: red;
 }
+
+#contenido {
+    height: 89vh;
+}
+
+img.seleccionado {
+   filter: hue-rotate(120deg);
+}

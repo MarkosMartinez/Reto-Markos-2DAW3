@@ -1,7 +1,10 @@
+const opciones = { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' };
 async function actualizarTemperaturas(){
+    //console.log("actualizarTemperaturas ejecutado");
+    let ahora = new Date();
+    let tiempoActual = ahora.toLocaleString('es-ES', opciones);
     ubicaciones = localStorage.getItem("seleccionadas");
-    cardHtml = "";
-
+    
     if(!ubicaciones || ubicaciones == null){
 
     }else{
@@ -16,21 +19,20 @@ async function actualizarTemperaturas(){
             });
             let data = await respuesta.json();
             //console.log(data);
-            if(!data || data == null || !respuesta) throw "Sin datos";
-
+            cardHtml = "";
             data.forEach(ubicacion => {
                 cardHtml += `<div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="card" style="color: #4B515D; border-radius: 35px;">
                   <div class="card-body p-4">
         
                     <div class="d-flex">
-                      <h6 class="flex-grow-1">${ubicacion["temperatura"]}</h6>
-                      <h6>15:07</h6>
+                      <h6 class="flex-grow-1"><b>${ubicacion["nombre"]}</b></h6>
+                      <h6>${tiempoActual}</h6>
                     </div>
         
                     <div class="d-flex flex-column text-center mt-5 mb-4">
                       <h6 class="display-4 mb-0 font-weight-bold" style="color: #1C2331;"> ${ubicacion["temperatura"]}°C </h6>
-                      <span class="small" style="color: #868B94">Stormy</span>
+                      <span class="small" style="color: #868B94">${obtenerClima(ubicacion["tiempo"])}</span>
                     </div>
         
                     <div class="d-flex align-items-center">
@@ -61,3 +63,26 @@ async function actualizarTemperaturas(){
 setInterval(() => {
     actualizarTemperaturas();
 }, 15000);
+
+const clima = {
+  "Thunderstorm": "Tormenta",
+  "Drizzle": "Llovizna",
+  "Rain": "Lluvia",
+  "Snow": "Nieve",
+  "Mist": "Neblina",
+  "Smoke": "Humo",
+  "Haze": "Neblina",
+  "Dust": "Polvo",
+  "Fog": "Niebla",
+  "Sand": "Arena",
+  "Ash": "Ceniza",
+  "Squall": "Chubasco",
+  "Tornado": "Tornado",
+  "Clear": "Despejado",
+  "Clouds": "Nublado"
+};
+
+
+function obtenerClima(tiempo) {
+  return clima[tiempo] || "Desconocido";
+}

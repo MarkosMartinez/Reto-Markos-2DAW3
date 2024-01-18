@@ -138,6 +138,7 @@ const laravelApi = "http://localhost:81";
             contrasena_registro.value = "";
             confirmar_contrasena_registro.value = "";
             contrasena_registro.value = "";
+            actualizarTemperaturas();
         }
 
         function logueo_incorrecto(){
