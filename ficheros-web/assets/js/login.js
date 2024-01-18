@@ -105,7 +105,6 @@ const laravelApi = "http://localhost:81";
                         "Content-type": "application/json; charset=UTF-8"
                     }
                 });
-                console.log(respuesta);
                 let data = await respuesta.json();
                 console.log(data);
                 if(data["success"]){
@@ -121,13 +120,10 @@ const laravelApi = "http://localhost:81";
             btn_registro.disabled = false;
         }
 
-        function logueo_correcto(){
+        async function logueo_correcto(){
             form_login.style.display = "none";
             form_registro.style.display = "none";
             contenido.style.display = "block";
-            setTimeout(() => {
-                cargarMapa();
-            }, 50);
             login_incorrecto.style.display = "none";
             register_incorrecto.style.disabled = "none";
             btn_cerrar_sesion.style.display = "block";
@@ -138,6 +134,10 @@ const laravelApi = "http://localhost:81";
             contrasena_registro.value = "";
             confirmar_contrasena_registro.value = "";
             contrasena_registro.value = "";
+            if(localStorage.getItem("seleccionadas") == null)
+            await obtenerLStorage();
+        
+            cargarMapa();
             actualizarTemperaturas();
         }
 

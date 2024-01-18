@@ -53,5 +53,47 @@ var lugares = [
         localStorage.setItem("seleccionadas", seleccionadas + "," + nombre);
       }
     }
+    guardarLStorage();
     actualizarTemperaturas();
+}
+
+async function guardarLStorage(){
+
+  try {
+    await fetch(laravelApi + "/api/guardar-ubicaciones", {
+        method: "POST",
+        body: JSON.stringify({
+            ubicaciones: localStorage.getItem("seleccionadas"),
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          "Authorization": "Bearer " + sessionStorage.getItem("token")
+      }
+    });
+} catch (error) {
+    console.error('Error:', error);
+}
+
+}
+
+async function obtenerLStorage(){
+  try {
+    let respuesta = await fetch(laravelApi + "/api/obtener-ubicaciones", {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          "Authorization": "Bearer " + sessionStorage.getItem("token")
+      }
+    });
+    let data = await respuesta.json();
+    console.log(data);
+    if(data["success"]){
+        localStorage.setItem("seleccionadas", data["ubicaciones"]);
+    }else{
+      throw "Error"
+    }
+} catch (error) {
+    console.error('Error:', error);
+    logueo_incorrecto();
+}
 }
