@@ -27,7 +27,7 @@ var lugares = [
         }
         marker.on('click', function() {
           this._icon.classList.toggle('seleccionado');
-          console.log('Ubicacion seleccionada: ' + lugar.nombre);
+          console.log('Ubicacion clickada: ' + lugar.nombre);
           ubicacionSeleccionada(lugar.nombre);
       })
       // map.on('click', function(e){
@@ -44,6 +44,7 @@ var lugares = [
     let seleccionadas = localStorage.getItem("seleccionadas");
     if(seleccionadas === null){
       localStorage.setItem("seleccionadas", nombre);
+      addCardLoading();
     } else {
       let seleccionadasArray = seleccionadas.split(",");
       if (seleccionadasArray.includes(nombre)) {
@@ -51,6 +52,7 @@ var lugares = [
         localStorage.setItem("seleccionadas", seleccionadasArray.join(","));
       } else {
         localStorage.setItem("seleccionadas", seleccionadas + "," + nombre);
+        addCardLoading();
       }
     }
     guardarLStorage();
