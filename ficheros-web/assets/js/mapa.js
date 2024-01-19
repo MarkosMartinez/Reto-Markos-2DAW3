@@ -5,7 +5,7 @@ var lugares = [
     {"nombre": "Hondarribia", "latitud": 43.36883, "longitud": -1.79369},
     {"nombre": "Donosti", "latitud": 43.3183, "longitud": -1.9812},
     {"nombre": "Errenteria", "latitud": 43.3119, "longitud": -1.8985},
-    {"nombre": "Pasaia", "latitud": 43.3251, "longitud": -1.9259}
+    {"nombre": "Bilbo", "latitud": 43.2641, "longitud": -2.9493},
   ];
   function cargarMapa(){
     if(!map){
