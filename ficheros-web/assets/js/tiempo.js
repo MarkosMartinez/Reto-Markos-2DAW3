@@ -109,3 +109,11 @@ function addCardLoading(){
   </div>
 </div>`;
 }
+
+async function obtenerPronosticoManana(){
+  let urlHondarribia = "https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/coast_zone/locations/hondarribia/forecast/at/2023/01/21/for/20230122";
+  let urlDonostia = "https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/donostialdea/locations/errenteria/forecast/at/2023/01/21/for/20230122";
+  let urlErrenteria = "https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/donostialdea/locations/donostia/forecast/at/2023/01/21/for/20230122";
+  let urlBilbao = "https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/great_bilbao/locations/bilbao/forecast/at/2023/01/21/for/20230122";
+
+}

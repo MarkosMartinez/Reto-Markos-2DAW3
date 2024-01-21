@@ -32,13 +32,6 @@ async function obtenerLugares(){
 }
 }
 
-// lugares = [
-//     {"nombre": "Irun", "latitud": 43.3390, "longitud": -1.7896},
-//     {"nombre": "Hondarribia", "latitud": 43.36883, "longitud": -1.79369},
-//     {"nombre": "Donostia", "latitud": 43.3183, "longitud": -1.9812},
-//     {"nombre": "Errenteria", "latitud": 43.3119, "longitud": -1.8985},
-//     {"nombre": "Bilbo", "latitud": 43.2641, "longitud": -2.9493},
-//   ];
   function cargarMapa(){
     if(!map){
 
@@ -78,12 +71,13 @@ async function obtenerLugares(){
       localStorage.setItem("seleccionadas", nombre);
       addCardLoading();
     } else {
-      let seleccionadasArray = seleccionadas.split(",");
+      let seleccionadasArray = seleccionadas.split(",").filter(Boolean);
       if (seleccionadasArray.includes(nombre)) {
         seleccionadasArray = seleccionadasArray.filter(item => item !== nombre);
         localStorage.setItem("seleccionadas", seleccionadasArray.join(","));
       } else {
-        localStorage.setItem("seleccionadas", seleccionadas + "," + nombre);
+        seleccionadasArray.push(nombre);
+        localStorage.setItem("seleccionadas", seleccionadasArray.join(","));
         addCardLoading();
       }
     }
