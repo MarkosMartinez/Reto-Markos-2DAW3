@@ -1,5 +1,3 @@
-const laravelApi = "http://localhost:81";
-
         if(sessionStorage.getItem("token")){
             lbl_checksesion.style.display = "block";
             btn_login.disabled = true;
@@ -137,7 +135,7 @@ const laravelApi = "http://localhost:81";
             if(localStorage.getItem("seleccionadas") == null)
             await obtenerLStorage();
         
-            cargarMapa();
+            inicializarMapa();
             actualizarTemperaturas();
         }
 

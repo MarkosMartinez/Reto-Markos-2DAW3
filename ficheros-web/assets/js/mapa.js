@@ -1,12 +1,44 @@
 // Obtener las temperaturas de "lugares" para ponerlos en el tooltip
 var map;
-var lugares = [
+var lugares;
+
+
+async function inicializarMapa() {
+lugares = await obtenerLugares();
+  cargarMapa();
+}
+
+async function obtenerLugares(){
+  try {
+    let respuesta = await fetch(laravelApi + "/api/obtener-las-ubicaciones", {
+        method: "GET",
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    });
+    let data = await respuesta.json();
+    console.log(data);
+    return data;
+} catch (error) {
+    console.error('Error:', error);
+    //En caso de error, devolver ubicaciones por defecto
+    return [
     {"nombre": "Irun", "latitud": 43.3390, "longitud": -1.7896},
     {"nombre": "Hondarribia", "latitud": 43.36883, "longitud": -1.79369},
-    {"nombre": "Donosti", "latitud": 43.3183, "longitud": -1.9812},
+    {"nombre": "Donostia", "latitud": 43.3183, "longitud": -1.9812},
     {"nombre": "Errenteria", "latitud": 43.3119, "longitud": -1.8985},
     {"nombre": "Bilbo", "latitud": 43.2641, "longitud": -2.9493},
   ];
+}
+}
+
+// lugares = [
+//     {"nombre": "Irun", "latitud": 43.3390, "longitud": -1.7896},
+//     {"nombre": "Hondarribia", "latitud": 43.36883, "longitud": -1.79369},
+//     {"nombre": "Donostia", "latitud": 43.3183, "longitud": -1.9812},
+//     {"nombre": "Errenteria", "latitud": 43.3119, "longitud": -1.8985},
+//     {"nombre": "Bilbo", "latitud": 43.2641, "longitud": -2.9493},
+//   ];
   function cargarMapa(){
     if(!map){
 
