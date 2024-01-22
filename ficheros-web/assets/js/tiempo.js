@@ -26,7 +26,7 @@ async function actualizarTemperaturas(){
             //console.log(data);
             cardHtml = "";
             data.forEach(ubicacion => {
-                cardHtml += `<div class="col-lg-6 col-md-6 col-sm-12 ${ubicacion["nombre"]}" title='Temperatura mañana: ${pronosticoMañana.find(ubiPornostico => ubiPornostico.ciudad == ubicacion["nombre"].toLowerCase()).temperatura.toFixed(2)}ºC'>
+              cardHtml += `<div class="col-lg-6 col-md-6 col-sm-12 ${ubicacion["nombre"]}" title='Temperatura mañana: ${pronosticoMañana.find(ubiPronostico => ubiPronostico.ciudad == ubicacion["nombre"].toLowerCase()) ? pronosticoMañana.find(ubiPronostico => ubiPronostico.ciudad == ubicacion["nombre"].toLowerCase()).temperatura.toFixed(2) : "No disponible"}'>
                 <div class="card" style="color: #4B515D; border-radius: 35px;">
                   <div class="card-body p-4">
         

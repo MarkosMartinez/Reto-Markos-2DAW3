@@ -50,6 +50,7 @@ async function obtenerLugares(){
         //     marker.bindTooltip("Temperatura Mañana: " + pronostico["temperatura"].toFixed(2) + "ºC");
         //   }
         // });
+          marker.bindTooltip(lugar.nombre);
         if (localStorage.getItem("seleccionadas") !== null) {
           let seleccionadasArray = localStorage.getItem("seleccionadas").split(",");
           if (seleccionadasArray.includes(lugar.nombre)) {
