@@ -18,26 +18,12 @@ services:
       - "8080:80"
     depends_on:
       - apache
-      
-  mysql:
-    image: mysql:latest
-    environment:
-      MYSQL_USER: sail
-      MYSQL_PASSWORD: password
-      MYSQL_DATABASE: reto_markos
-      MYSQL_ROOT_PASSWORD: password
-    volumes:
-      - ./mysql:/var/lib/mysql
-    ports:
-      - "3306:3306"
 
   laravelapiweb:
     image: markosmartinez/laravelpassport-php8.2
     restart: unless-stopped
     volumes:
       - ./Reto-Markos-APIWeb/:/var/www/html/
-    environment:
-      USAR_WORKER: 0
     ports:
       - "81:8000"
     depends_on:
@@ -51,11 +37,22 @@ services:
       - ./Reto-Markos-API/:/var/www/html/
     environment:
       USAR_WORKER: 1
-    ports:
-      - "82:8000"
     depends_on:
       - mysql
-
+  
+  #Desde aqui hacia abajo, eliminar antes de terminar
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_USER: sail
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: reto_markos
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+  
   phpmyadmin:
     image: phpmyadmin
     ports:

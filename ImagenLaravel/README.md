@@ -36,7 +36,7 @@ services:
 (_8000 por defecto_)
 - Donde pone 'depends_on: - mysql', especifica que el contenedor no se iniciara hasta que el MySQL arranque.
 
-## Source Code de la última versión:
+## Source Code (v1.4):
 ### Dockerfile:
 ```
 FROM php:8.2-cli
@@ -54,17 +54,13 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Configurar el directorio de trabajo
 WORKDIR /var/www/html
 
-# Verificar si la carpeta /proyecto está vacía
-RUN if [ -z "$(ls -A /var/www/html/)" ]; then \
-        echo "La carpeta está vacía."; \
-    else \
-        # Ejecutar los comandos de instalacion si la carpeta no está vacía
-        composer install --ignore-platform-reqs --no-scripts --no-plugins --no-dev --optimize-autoloader --no-interaction && composer require laravel/passport --ignore-platform-reqs; \
-    fi
+# Definir la variable del "worker" a 0 por defecto
+ENV USAR_WORKER=0
 
 # Exponer el puerto 8000
 EXPOSE 8000
 
-# Comando para hacer el migrate, crear el cliente e iniciar el servicio de laravel
-CMD ["sh", "-c", "if php artisan migrate | grep -q 'Nothing to migrate'; then php artisan serve --host=0.0.0.0 --port=8000; else php artisan passport:install --force && php artisan serve --host=0.0.0.0 --port=8000; fi"]
+# Comando a ejecutar cada vez que arranca la imagen
+CMD ["sh", "-c", "if [ -z \"$(ls -A /var/www/html/vendor)\" ]; then composer install --ignore-platform-reqs --no-scripts --no-plugins --no-dev --optimize-autoloader --no-interaction; else echo \"Paquetes ya instalados! Omitiendo instalacion...\"; fi && if [ $USAR_WORKER -eq 1 ]; then php artisan migrate && php artisan schedule:work; else if php artisan migrate | grep -q 'Nothing to migrate'; then php artisan serve --host=0.0.0.0 --port=8000; else php artisan passport:install --force && php artisan serve --host=0.0.0.0 --port=8000; fi; fi"]
+
 ```
