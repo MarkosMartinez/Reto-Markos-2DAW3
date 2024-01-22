@@ -1,3 +1,8 @@
+pronosticoMañana = [];
+obtenerPronosticoManana();
+
+
+
 const opciones = { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' };
 async function actualizarTemperaturas(){
     //console.log("actualizarTemperaturas ejecutado");
@@ -21,7 +26,7 @@ async function actualizarTemperaturas(){
             //console.log(data);
             cardHtml = "";
             data.forEach(ubicacion => {
-                cardHtml += `<div class="col-lg-6 col-md-6 col-sm-12">
+                cardHtml += `<div class="col-lg-6 col-md-6 col-sm-12 ${ubicacion["nombre"]}" title='Temperatura mañana: ${pronosticoMañana.find(ubiPornostico => ubiPornostico.ciudad == ubicacion["nombre"].toLowerCase()).temperatura.toFixed(2)}ºC'>
                 <div class="card" style="color: #4B515D; border-radius: 35px;">
                   <div class="card-body p-4">
         
@@ -52,6 +57,9 @@ async function actualizarTemperaturas(){
             });
 
             huecoCards.innerHTML = cardHtml;
+            data.forEach(ubicacion => {
+            $(`.${ubicacion["nombre"]}`).tooltip();
+            });
         } catch (error) {
             console.error('Error:', error);
 
@@ -111,9 +119,30 @@ function addCardLoading(){
 }
 
 async function obtenerPronosticoManana(){
-  let urlHondarribia = "https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/coast_zone/locations/hondarribia/forecast/at/2023/01/21/for/20230122";
-  let urlDonostia = "https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/donostialdea/locations/errenteria/forecast/at/2023/01/21/for/20230122";
-  let urlErrenteria = "https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/donostialdea/locations/donostia/forecast/at/2023/01/21/for/20230122";
-  let urlBilbao = "https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/great_bilbao/locations/bilbao/forecast/at/2023/01/21/for/20230122";
+  let fecha = new Date();
+  let fechaDesde = `${fecha.getFullYear()}/${(fecha.getMonth() + 1).toString().padStart(2, '0')}/${fecha.getDate().toString().padStart(2, '0')}`;
+  fecha.setDate(fecha.getDate() + 1);
+  let fechaHasta = `${fecha.getFullYear()}${(fecha.getMonth() + 1).toString().padStart(2, '0')}${fecha.getDate().toString().padStart(2, '0')}`;
+
+  let urls = [`https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/coast_zone/locations/hondarribia/forecast/at/${fechaDesde}/for/${fechaHasta}`, `https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/donostialdea/locations/errenteria/forecast/at/${fechaDesde}/for/${fechaHasta}`, `https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/donostialdea/locations/donostia/forecast/at/${fechaDesde}/for/${fechaHasta}`, `https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/great_bilbao/locations/bilbao/forecast/at/${fechaDesde}/for/${fechaHasta}`];
+
+  for(let i = 0; i < urls.length; i++){
+    try {
+      let respuesta = await fetch(urls[i], {
+          method: "GET",
+          headers: {
+              "Content-type": "application/json; charset=UTF-8",
+              "Authorization": "Bearer " + tokenEuskalmet
+          },
+      });
+      let data = await respuesta.json();
+      //console.log(data["temperature"]["value"]);
+      pronosticoMañana.push({ciudad: data["regionZoneLocation"]["regionZoneLocationId"], temperatura: data["temperature"]["value"]});
+
+      
+  } catch (error) {
+      console.error('Error:', error);
+  }
+  }
 
 }

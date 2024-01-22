@@ -5,7 +5,8 @@ var lugares;
 
 async function inicializarMapa() {
 lugares = await obtenerLugares();
-  cargarMapa();
+if(!pronosticoMañana) await obtenerPronosticoManana();
+cargarMapa();
 }
 
 async function obtenerLugares(){
@@ -17,7 +18,7 @@ async function obtenerLugares(){
         }
     });
     let data = await respuesta.json();
-    console.log(data);
+    //console.log(data);
     return data;
 } catch (error) {
     console.error('Error:', error);
@@ -27,7 +28,7 @@ async function obtenerLugares(){
     {"nombre": "Hondarribia", "latitud": 43.36883, "longitud": -1.79369},
     {"nombre": "Donostia", "latitud": 43.3183, "longitud": -1.9812},
     {"nombre": "Errenteria", "latitud": 43.3119, "longitud": -1.8985},
-    {"nombre": "Bilbo", "latitud": 43.2641, "longitud": -2.9493},
+    {"nombre": "Bilbao", "latitud": 43.2641, "longitud": -2.9493},
   ];
 }
 }
@@ -44,6 +45,11 @@ async function obtenerLugares(){
       var marker = "";
       lugares.forEach(lugar => {
         marker = L.marker([lugar.latitud, lugar.longitud]).addTo(map);
+        // pronosticoMañana.forEach(pronostico => {
+        //   if(pronostico["ciudad"] == lugar.nombre.toLowerCase()){
+        //     marker.bindTooltip("Temperatura Mañana: " + pronostico["temperatura"].toFixed(2) + "ºC");
+        //   }
+        // });
         if (localStorage.getItem("seleccionadas") !== null) {
           let seleccionadasArray = localStorage.getItem("seleccionadas").split(",");
           if (seleccionadasArray.includes(lugar.nombre)) {
@@ -73,6 +79,7 @@ async function obtenerLugares(){
     } else {
       let seleccionadasArray = seleccionadas.split(",").filter(Boolean);
       if (seleccionadasArray.includes(nombre)) {
+        $("." + nombre).tooltip("dispose"); 
         seleccionadasArray = seleccionadasArray.filter(item => item !== nombre);
         localStorage.setItem("seleccionadas", seleccionadasArray.join(","));
       } else {
