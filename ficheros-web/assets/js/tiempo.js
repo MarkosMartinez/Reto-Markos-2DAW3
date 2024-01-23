@@ -19,7 +19,7 @@ async function actualizarTemperaturas() {
         },
       });
       let data = await respuesta.json();
-      console.log(data);
+      //console.log(data);
       cardHtml = "";
       data.forEach(ubicacion => {
         $(`.${ubicacion["nombre"]}`).tooltip("dispose");

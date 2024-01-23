@@ -102,7 +102,6 @@ async function guardarLStorage() {
   if (index > -1) {
     arraySeleccionadas.splice(index, 1);
   }
-  arraySeleccionadas = arraySeleccionadas.replace(/,+$/, '');
   seleccionadas = arraySeleccionadas.join(",");
   /**/
 
