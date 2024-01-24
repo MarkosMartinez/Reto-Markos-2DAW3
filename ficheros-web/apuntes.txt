@@ -1,2 +1,6 @@
 URL de las Tabs: https://fastbootstrap.com/components/tabs/
 URL FontAwesome "Pro": https://github.com/eliyantosarage/font-awesome-pro
+
+Hacer que el mapa este siempre en "active" al recargar la pagina?
+
+Terminar todos los TODOS y arreglar los FIXME

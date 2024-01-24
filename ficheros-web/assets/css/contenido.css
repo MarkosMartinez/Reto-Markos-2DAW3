@@ -2,9 +2,10 @@
     height: 600px;
 }
 
-/*FIXME Cambiar el color del tab active*/
-.nav-link {
-    background-color: red;
+.nav-link.active {
+    background-color: rgb(71, 147, 247) !important;
+    color: white !important;
+    border-color: rgb(71, 147, 247) !important;
 }
 
 #contenido {

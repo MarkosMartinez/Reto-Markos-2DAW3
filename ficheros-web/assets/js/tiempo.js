@@ -1,14 +1,26 @@
-pronosticoMañana = [];
+var ubicaciones;
+var pronosticoMañana = [];
 obtenerPronosticoManana();
 
 
 const opciones = { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' };
 async function actualizarTemperaturas() {
   ubicaciones = localStorage.getItem("seleccionadas");
+  //console.log("Actualizando temperaturas...");
 
-  if (ubicaciones == "null") {
+  if (!(ubicaciones == "null" || ubicaciones == null || comprobandoLogin == true || ubicaciones == "")) {
 
-  } else {
+    document.querySelectorAll('.nav-link.disabled').forEach(elemento => {
+      elemento.classList.remove('disabled');
+      elemento.classList.add('enabled');
+    });
+
+  }else{
+    document.querySelectorAll('.nav-link.enabled').forEach(elemento => {
+      elemento.classList.remove('enabled');
+      elemento.classList.add('disabled');
+    });
+  }
 
     try {
       let respuesta = await fetch(laravelApi + "/api/tiempo-actual?ubicacion=" + ubicaciones, {
@@ -70,12 +82,17 @@ async function actualizarTemperaturas() {
       console.error('Error:', error);
 
     }
-
-  }
 }
 
 setInterval(() => {
-  actualizarTemperaturas();
+  if (ubicaciones == "null" || ubicaciones == null || ubicaciones == "" || comprobandoLogin == true) {
+    document.querySelectorAll('.nav-link.enabled').forEach(elemento => {
+      elemento.classList.remove('enabled');
+      elemento.classList.add('disabled');
+    });
+  }else{
+    actualizarTemperaturas();
+  }
 }, 15000);
 
 const clima = {

@@ -1,6 +1,10 @@
+var comprobandoLogin = false;
+
 if (sessionStorage.getItem("token")) {
-    lbl_checksesion.style.display = "block";
+    comprobandoLogin = true;
+    btn_login.style.opacity = 0.5;
     btn_login.disabled = true;
+    lbl_checksesion.style.display = "block";
 
     async function comprobar_login() {
         // logueo_correcto();
@@ -10,14 +14,17 @@ if (sessionStorage.getItem("token")) {
             logueo_correcto();
             lbl_checksesion.style.display = "none";
             btn_login.disabled = false;
+            btn_login.style.opacity = 1;
         } else {
             cerrar_sesion();
             logueo_incorrecto();
-            lbl_checksesion.style.display = "none";
             btn_login.disabled = false;
+            btn_login.style.opacity = 1;
+            lbl_checksesion.style.display = "none";
         }
     }
     comprobar_login();
+    comprobandoLogin = false;
 }
 
 function cambiarauth(tipo) {
@@ -141,9 +148,11 @@ async function logueo_correcto() {
 
 function logueo_incorrecto() {
     login_incorrecto.style.display = "block";
+    contrasena_login.value = "";
 }
 function registro_incorrecto() {
     register_incorrecto.style.display = "block";
+    contrasena_registro.value = "";
 }
 
 async function cerrar_sesion() {

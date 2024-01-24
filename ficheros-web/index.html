@@ -55,23 +55,24 @@
     <form id="form_login" class="form_login" onsubmit="event.preventDefault(); loguearse(correo_login.value, contrasena_login.value);">
         <div id="login_incorrecto" style="display: none;">Login incorrecto!</div>
         <div class="flex-column">
-          <label>Email </label></div>
-          <div class="inputForm">
-            <img class="img-fluid" src="assets/img/iconos/arroba.svg" width="20" height="20">
-            <input type="email" name="correo_login" id="correo_login" class="input_login" placeholder="Correo" required>
-          </div>
+          <label>Email </label>
+        </div>
+        <div class="inputForm">
+          <img class="img-fluid" src="assets/img/iconos/arroba.svg" width="20" height="20">
+          <input type="email" name="correo_login" id="correo_login" class="input_login" placeholder="Correo" required>
+        </div>
         
         <div class="flex-column">
-          <label>Password </label></div>
-          <div class="inputForm">
-            <img class="img-fluid" src="assets/img/iconos/candado.svg" width="20" height="20">
-            <input type="password" name="contrasena_login" id="contrasena_login" class="input_login" placeholder="Contraseña" required>
-            <!--TODO Hacer que funcione-->
-            <img class="img-fluid" src="assets/img/iconos/ojo.svg" width="20" height="20">
-          </div>
+          <label>Password </label>
+        </div>
+        <div class="inputForm">
+          <img class="img-fluid" src="assets/img/iconos/candado.svg" width="20" height="20">
+          <input type="password" name="contrasena_login" id="contrasena_login" class="input_login" placeholder="Contraseña" required>
+          <!--TODO Hacer que funcione-->
+          <img class="img-fluid" src="assets/img/iconos/ojo.svg" width="20" height="20">
+        </div>
         
-        <div class="flex-row">
-          <div>
+        <div class="flex-row"><div>
           <input type="checkbox">
           <!--TODO Hacer que funcione?-->
           <label>Recordar sesion</label>
@@ -86,21 +87,24 @@
     <form id="form_registro" class="form_login" style="display: none;" onsubmit="event.preventDefault(); registrarse(nombre_registro.value, correo_registro.value, contrasena_registro.value, confirmar_contrasena_registro.value);">
       <div id="register_incorrecto" style="display: none;">Registro incorrecto!</div>
       <div class="flex-column">
-        <label>Nombre </label></div>
+        <label>Nombre </label>
+      </div>
         <div class="inputForm">
           <img class="img-fluid" src="assets/img/iconos/nombre.svg" width="20" height="20">
           <input type="text" name="nombre_registro" id="nombre_registro" class="input_login" placeholder="Nombre" required>
         </div>
 
       <div class="flex-column">
-        <label>Email </label></div>
+        <label>Email </label>
+      </div>
         <div class="inputForm">
           <img class="img-fluid" src="assets/img/iconos/arroba.svg" width="20" height="20">
           <input type="email" name="correo_registro" id="correo_registro" class="input_login" placeholder="Correo" required>
         </div>
 
       <div class="flex-column">
-        <label>Password </label></div>
+        <label>Password </label>
+      </div>
         <div class="inputForm">
           <img class="img-fluid" src="assets/img/iconos/candado.svg" width="20" height="20">
           <input type="password" name="contrasena_registro" id="contrasena_registro" class="input_login" placeholder="Contraseña" required>
@@ -117,11 +121,10 @@
             <img class="img-fluid" src="assets/img/iconos/ojo.svg" width="20" height="20">
           </div>
       
-      <div class="flex-row">
-      </div>
+      <div class="flex-row"></div>
       <input type="submit" id="btn_registro" class="button-submit btn-disabled" value="Registrarse">
       <p id="lbl_registro" class="p" onclick="cambiarauth(0)">Ya tienes cuenta? Inicia sesion aqui!</p>
-  </form>
+    </form>
     <!--Fin Autenticacion-->
 
 
@@ -131,10 +134,13 @@
 
       <ul class="nav nav-tabs justify-content-center" role="tablist">
         <li class="nav-item" role="presentation">
-          <a class="nav-link active" id="mapa-tab" data-bs-toggle="tab" href="#mapa-tabpanel" role="tab" aria-controls="mapa-tabpanel" aria-selected="true"><i class="fa-solid fa-map"></i> Mapa</a>
+          <a class="nav-link active" id="mapa-tab" data-bs-toggle="tab" href="#mapa-tabpanel" role="tab" aria-controls="mapa-tabpanel" aria-selected="true"><i class="fa-regular fa-map"></i> Mapa</a>
         </li>
         <li class="nav-item" role="presentation">
-          <a class="nav-link" id="datos-tab" data-bs-toggle="tab" href="#datos-tabpanel" role="tab" aria-controls="datos-tabpanel" aria-selected="false"><i class="fa-solid fa-temperature-sun"></i> Datos</a>
+          <a class="nav-link disabled" id="datos-tab" data-bs-toggle="tab" href="#datos-tabpanel" role="tab" aria-controls="datos-tabpanel" aria-selected="false"><i class="fa-regular fa-temperature-half"></i> Temperaturas</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link disabled" id="estadisticas-tab" data-bs-toggle="tab" href="#estadisticas-tabpanel" role="tab" aria-controls="estadisticas-tabpanel" aria-selected="false"><i class="fa-light fa-chart-simple"></i> Estadisticas</a>
         </li>
       </ul>
       <div class="tab-content pt-5" id="tab-content">
@@ -151,30 +157,35 @@
 
           <div class="container-fluid">
             <div class="row">
-
+          
               <div id="cards-temperaturas" class="col-lg-8 col-md-12">
                 <style>
-                  .card{
+                  .card {
                     margin-top: 5px;
                     margin-bottom: 5px;
                   }
                 </style>
                 <div class="row row-cols-1" id="huecoCards">
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-12">
-              Contenido para el drag and drop
-            </div>
-            
-          
               </div>
+              <div class="col-lg-4 col-md-12">
+                Contenido para el drag and drop
+              </div>
+          
+          
+            </div>
 
         </div>
+      </div>
+      <div class="tab-pane" id="estadisticas-tabpanel" role="tabpanel" aria-labelledby="estadisticas-tab">
+        Estadisticas
       </div>
 
 
     </div>
     <!--Fin Contenido-->
+
+    <!--TODO Poner un footer?-->
 
 
     <script src="assets/js/tiempo.js"></script>
