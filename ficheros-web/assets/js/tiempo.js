@@ -84,16 +84,16 @@ async function actualizarTemperaturas() {
     actualizarImagen();
 }
 
-// setInterval(() => {
-//   if (ubicaciones == "null" || ubicaciones == null || ubicaciones == "" || comprobandoLogin == true) {
-//     document.querySelectorAll('.nav-link.enabled').forEach(elemento => {
-//       elemento.classList.remove('enabled');
-//       elemento.classList.add('disabled');
-//     });
-//   }else{
-//     actualizarTemperaturas();
-//   }
-// }, 15000);
+setInterval(() => {
+  if (ubicaciones == "null" || ubicaciones == null || ubicaciones == "" || comprobandoLogin == true) {
+    document.querySelectorAll('.nav-link.enabled').forEach(elemento => {
+      elemento.classList.remove('enabled');
+      elemento.classList.add('disabled');
+    });
+  }else{
+    actualizarTemperaturas();
+  }
+}, 15000);
 
 const clima = {
   "Thunderstorm": "Tormenta",
