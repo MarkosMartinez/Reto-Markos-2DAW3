@@ -8,10 +8,22 @@
     border-color: rgb(71, 147, 247) !important;
 }
 
+.nav-link:hover {
+    border-color: rgb(71, 147, 247) !important;
+}
+
 #contenido {
     height: 89vh;
 }
 
 img.seleccionado {
    filter: hue-rotate(120deg);
+}
+
+
+/*Drag and Drop*/
+#contenedor-drag-drop {
+    border-radius: 50px;
+    background: #ffffff;
+    height: 500px;
 }

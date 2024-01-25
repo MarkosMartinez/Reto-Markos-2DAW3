@@ -44,7 +44,7 @@ async function actualizarTemperaturas() {
           temperatura = ubicacion["temperatura_real"];
         }
 
-        cardHtml += `<div class="col-lg-6 col-md-6 col-sm-12 ${ubicacion["nombre"]}" title='Temperatura mañana: ${pronosticoMañana.find(ubiPronostico => ubiPronostico.ciudad == ubicacion["nombre"].toLowerCase()) ? pronosticoMañana.find(ubiPronostico => ubiPronostico.ciudad == ubicacion["nombre"].toLowerCase()).temperatura.toFixed(2) : "No disponible"}'>
+        cardHtml += `<div class="col-lg-6 col-md-6 col-sm-12 ${ubicacion["nombre"]}" title='𝗧𝗲𝗺𝗽𝗲𝗿𝗮𝘁𝘂𝗿𝗮 𝗱𝗲 𝗺𝗮𝗻̃𝗮𝗻𝗮: ${pronosticoMañana.find(ubiPronostico => ubiPronostico.ciudad == ubicacion["nombre"].toLowerCase()) ? pronosticoMañana.find(ubiPronostico => ubiPronostico.ciudad == ubicacion["nombre"].toLowerCase()).temperatura : "No disponible"}'>
                 <div class="card" style="color: #4B515D; border-radius: 35px;">
                   <div class="card-body p-4">
         
@@ -60,12 +60,12 @@ async function actualizarTemperaturas() {
         
                     <div class="d-flex align-items-center">
                       <div class="flex-grow-1" style="font-size: 1rem;">
-                        <div><i class="fas fa-wind fa-fw" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["viento"]} km/h </span></div>
                         <div><i class="fas fa-tint fa-fw" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["humedad"]}% </span></div>
+                        <div><i class="fas fa-wind fa-fw" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["viento"]} km/h </span></div>
                         <div><i class="fa-solid fa-thermometer" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["sensacion_termica"] ?? "--"}ºC </span></div>
                       </div>
                       <div>
-                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp" width="100px">
+                        <img onmousedown="return false" class="${obtenerClima(ubicacion["tiempo"])}" width="100px height="100px"">
                       </div>
                     </div>
         
@@ -80,20 +80,20 @@ async function actualizarTemperaturas() {
       });
     } catch (error) {
       console.error('Error:', error);
-
     }
+    actualizarImagen();
 }
 
-setInterval(() => {
-  if (ubicaciones == "null" || ubicaciones == null || ubicaciones == "" || comprobandoLogin == true) {
-    document.querySelectorAll('.nav-link.enabled').forEach(elemento => {
-      elemento.classList.remove('enabled');
-      elemento.classList.add('disabled');
-    });
-  }else{
-    actualizarTemperaturas();
-  }
-}, 15000);
+// setInterval(() => {
+//   if (ubicaciones == "null" || ubicaciones == null || ubicaciones == "" || comprobandoLogin == true) {
+//     document.querySelectorAll('.nav-link.enabled').forEach(elemento => {
+//       elemento.classList.remove('enabled');
+//       elemento.classList.add('disabled');
+//     });
+//   }else{
+//     actualizarTemperaturas();
+//   }
+// }, 15000);
 
 const clima = {
   "Thunderstorm": "Tormenta",
@@ -113,6 +113,90 @@ const clima = {
   "Clouds": "Nublado"
 };
 
+function actualizarImagen() {
+  Object.entries(clima).forEach(([key, value]) => {
+    let imagenes =  document.getElementsByClassName(value);
+
+    switch (value) {
+      case 'Despejado':
+        Array.from(imagenes).forEach(img => {
+          img.src = 'assets/img/climas/sol.png';
+        });
+        break;
+      case 'Lluvia':
+        Array.from(imagenes).forEach(img => {
+          img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
+        });
+        break;
+      case 'Tormenta':
+        Array.from(imagenes).forEach(img => {
+          img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
+        });
+        break;
+      case 'Llovizna':
+        Array.from(imagenes).forEach(img => {
+          img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
+        });
+        break;
+      case 'Nieve':
+        Array.from(imagenes).forEach(img => {
+        img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
+      });
+        break;
+      case 'Humo':
+        Array.from(imagenes).forEach(img => {
+        img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
+      });
+        break;
+      case 'Neblina':
+        Array.from(imagenes).forEach(img => {
+        img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
+      });
+        break;
+      case 'Ceniza':
+        Array.from(imagenes).forEach(img => {
+        img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
+      });
+        break;
+      case 'Arena':
+        Array.from(imagenes).forEach(img => {
+        img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
+      });
+        break;
+      case 'Polvo':
+        Array.from(imagenes).forEach(img => {
+        img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
+      });
+        break;
+      case 'Nublado':
+        Array.from(imagenes).forEach(img => {
+        img.src = 'https://cdn.icon-icons.com/icons2/565/PNG/512/cloudy-day_icon-icons.com_54312.png';
+      });
+        break;
+      case 'Tornado':
+        Array.from(imagenes).forEach(img => {
+        img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
+      });
+        break;
+      case 'Nublado':
+        Array.from(imagenes).forEach(img => {
+        img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
+      });
+        break;
+      case 'Niebla':
+        Array.from(imagenes).forEach(img => {
+        img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
+      });
+        break;
+      default:
+        Array.from(imagenes).forEach(img => {
+          img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
+        });
+        break;
+    }
+  });
+}
+
 function obtenerClima(tiempo) {
   return clima[tiempo] || "Tiempo Desconocido";
 }
@@ -131,9 +215,9 @@ function addCardLoading() {
       </div>
       <div class="d-flex align-items-center" style="padding-bottom: 15px">
         <div class="flex-grow-1" style="font-size: 1rem;">
-          <div><i class="fas fa-wind fa-fw" style="color: #868B94;"></i> <span class="ms-1"> --km/h </span></div>
           <div><i class="fas fa-tint fa-fw" style="color: #868B94;"></i> <span class="ms-1"> --% </span></div>
-          <div><i class="fas fa-sun fa-fw" style="color: #868B94;"></i> <span class="ms-1"> --h </span></div>
+          <div><i class="fas fa-wind fa-fw" style="color: #868B94;"></i> <span class="ms-1"> --km/h </span></div>
+          <div><i class="fas fa-sun fa-fw" style="color: #868B94;"></i> <span class="ms-1"> --ºC </span></div>
         </div>
       </div>
     </div>
@@ -150,22 +234,20 @@ async function obtenerPronosticoManana() {
   let urls = [`https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/coast_zone/locations/hondarribia/forecast/at/${fechaDesde}/for/${fechaHasta}`, `https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/donostialdea/locations/errenteria/forecast/at/${fechaDesde}/for/${fechaHasta}`, `https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/donostialdea/locations/donostia/forecast/at/${fechaDesde}/for/${fechaHasta}`, `https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/great_bilbao/locations/bilbao/forecast/at/${fechaDesde}/for/${fechaHasta}`];
 
   for (let i = 0; i < urls.length; i++) {
-    try {
-      let respuesta = await fetch(urls[i], {
-        method: "GET",
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-          "Authorization": "Bearer " + tokenEuskalmet
-        },
-      });
-      let data = await respuesta.json();
-      //console.log(data["temperature"]["value"]);
-      pronosticoMañana.push({ ciudad: data["regionZoneLocation"]["regionZoneLocationId"], temperatura: data["temperature"]["value"] });
+    $.ajax({
+      "url": urls[i],
+      "method": "GET",
+      "timeout": 0,
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer " + tokenEuskalmet
+      },
+    })
+    .done(function (response) {
 
-
-    } catch (error) {
-      console.error('Error:', error);
-    }
+      //console.log(urls[i] + " " +response["forecastText"]["SPANISH"]);
+      pronosticoMañana.push({ ciudad: response["regionZoneLocation"]["regionZoneLocationId"], temperatura: response["forecastText"]["SPANISH"] });
+    });
   }
 
 }
