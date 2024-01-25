@@ -170,8 +170,8 @@
               </div>
               <div class="col-lg-4 col-md-12" id="contenedor-drag-drop">
                 <!--TODO Ponerlos en un cuadrado negro donde encima ponga lo que es?-->
-                <img id="ddviento" src="assets/img/viento.png" height="100px"></img>
-                <img id="ddviento" src="assets/img/sensacion_termica.png" height="100px"></img>
+                <img id="dd_viento" ondragstart="arrastrando(event)" draggable="true" src="assets/img/viento.png" height="100px"></img>
+                <img id="dd_sensacion_termica" draggable="true" ondragstart="arrastrando(event)" src="assets/img/sensacion_termica.png" height="100px"></img>
               </div>
           
           
@@ -193,6 +193,7 @@
     <script src="assets/js/tiempo.js"></script>
     <script src="assets/js/mapa.js"></script>
     <script src="assets/js/login.js"></script>
+    <script src="assets/js/drag&drop.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>

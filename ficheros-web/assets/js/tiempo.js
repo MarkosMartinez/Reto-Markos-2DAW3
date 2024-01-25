@@ -44,7 +44,7 @@ async function actualizarTemperaturas() {
           temperatura = ubicacion["temperatura_real"];
         }
 
-        cardHtml += `<div class="col-lg-6 col-md-6 col-sm-12 ${ubicacion["nombre"]}" title='𝗧𝗲𝗺𝗽𝗲𝗿𝗮𝘁𝘂𝗿𝗮 𝗱𝗲 𝗺𝗮𝗻̃𝗮𝗻𝗮: ${pronosticoMañana.find(ubiPronostico => ubiPronostico.ciudad == ubicacion["nombre"].toLowerCase()) ? pronosticoMañana.find(ubiPronostico => ubiPronostico.ciudad == ubicacion["nombre"].toLowerCase()).temperatura : "No disponible"}'>
+        cardHtml += `<div id="card_${ubicacion['nombre']}" class="col-lg-6 col-md-6 col-sm-12 ${ubicacion["nombre"]}" ondrop="soltar(event, this)" ondragover="permitirSoltar(event)" title='𝗧𝗲𝗺𝗽𝗲𝗿𝗮𝘁𝘂𝗿𝗮 𝗱𝗲 𝗺𝗮𝗻̃𝗮𝗻𝗮: ${pronosticoMañana.find(ubiPronostico => ubiPronostico.ciudad == ubicacion["nombre"].toLowerCase()) ? pronosticoMañana.find(ubiPronostico => ubiPronostico.ciudad == ubicacion["nombre"].toLowerCase()).temperatura : "No disponible"}'>
                 <div class="card" style="color: #4B515D; border-radius: 35px;">
                   <div class="card-body p-4">
         
@@ -143,47 +143,22 @@ function actualizarImagen() {
         img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
       });
         break;
-      case 'Humo':
+      case 'Neblina' || 'Humo':
         Array.from(imagenes).forEach(img => {
         img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
       });
         break;
-      case 'Neblina':
+      case 'Ceniza' || 'Arena' || 'Polvo':
         Array.from(imagenes).forEach(img => {
         img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
       });
         break;
-      case 'Ceniza':
-        Array.from(imagenes).forEach(img => {
-        img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
-      });
-        break;
-      case 'Arena':
-        Array.from(imagenes).forEach(img => {
-        img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
-      });
-        break;
-      case 'Polvo':
-        Array.from(imagenes).forEach(img => {
-        img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
-      });
-        break;
-      case 'Nublado':
+      case 'Nublado' || 'Niebla':
         Array.from(imagenes).forEach(img => {
         img.src = 'https://cdn.icon-icons.com/icons2/565/PNG/512/cloudy-day_icon-icons.com_54312.png';
       });
         break;
       case 'Tornado':
-        Array.from(imagenes).forEach(img => {
-        img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
-      });
-        break;
-      case 'Nublado':
-        Array.from(imagenes).forEach(img => {
-        img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
-      });
-        break;
-      case 'Niebla':
         Array.from(imagenes).forEach(img => {
         img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
       });
