@@ -51,12 +51,18 @@ function cargarMapa() {
       //   }
       // });
       marker.bindTooltip(lugar.nombre);
-      if (localStorage.getItem("seleccionadas") !== null) {
-        let seleccionadasArray = localStorage.getItem("seleccionadas").split(",");
-        if (seleccionadasArray.includes(lugar.nombre)) {
-          marker._icon.classList.add('seleccionado');
-        }
+
+      let seleccionadasObj = JSON.parse(localStorage.getItem("seleccionadas"));
+      if (seleccionadasObj && Object.keys(seleccionadasObj).length > 0) {
+        seleccionadasObj.forEach(ubicacion => {
+          if (ubicacion.nombre == lugar.nombre) {
+            marker._icon.classList.add('seleccionado');
+          }
+
+        });
+        
       }
+
       marker.on('click', function () {
         this._icon.classList.toggle('seleccionado');
         console.log('Ubicacion clickada: ' + lugar.nombre);
@@ -74,52 +80,67 @@ function cargarMapa() {
 
 function ubicacionSeleccionada(nombre) {
   let seleccionadas = localStorage.getItem("seleccionadas");
-  if (seleccionadas === null) {
-    localStorage.setItem("seleccionadas", nombre);
+  
+  if (seleccionadas == null || seleccionadas == "null" || seleccionadas == "" || seleccionadas == []) {
+    const primeraUbicacion = {
+      [nombre]: {
+        viento: false,
+        sensacionTermica: false
+      }
+    };
+    localStorage.setItem("seleccionadas", JSON.stringify(primeraUbicacion));
     addCardLoading();
   } else {
-    let seleccionadasArray = seleccionadas.split(",").filter(Boolean);
-    if (seleccionadasArray.includes(nombre)) {
-      $("." + nombre).tooltip("dispose");
-      seleccionadasArray = seleccionadasArray.filter(item => item !== nombre);
-      localStorage.setItem("seleccionadas", seleccionadasArray.join(","));
-    } else {
-      seleccionadasArray.push(nombre);
-      localStorage.setItem("seleccionadas", seleccionadasArray.join(","));
+    let seleccionadasObj = JSON.parse(seleccionadas);
+    let encontradoIndex = -1;
+    seleccionadasObj.forEach((ubicacion, index) => {
+      if (ubicacion.nombre == nombre) {
+        encontradoIndex = index;
+        $("." + nombre).tooltip("dispose");
+      }
+    });
+    if (encontradoIndex != -1) {
+      seleccionadasObj.splice(encontradoIndex, 1);
+    }else{
+      //FIXME Arreglar esto y tiempo js 10: "TypeError: JSON.parse(...) is null" cuando no hay seleccion
+      let nuevaSeleccion = {
+          nombre: nombre,
+          viento: false,
+          sensacionTermica: false
+      };
+      seleccionadasObj.push(nuevaSeleccion);
       addCardLoading();
     }
+    encontradoIndex = -1;
+    localStorage.setItem("seleccionadas", JSON.stringify(seleccionadasObj));
   }
+
   guardarLStorage();
   actualizarTemperaturas();
 }
 
+
 async function guardarLStorage() {
-
-  /*Para evitar el "null" sobrante*/
-  let seleccionadas = localStorage.getItem("seleccionadas");
-  let arraySeleccionadas = seleccionadas.split(",");
-  let index = arraySeleccionadas.indexOf("null");
-  if (index > -1) {
-    arraySeleccionadas.splice(index, 1);
-  }
-  seleccionadas = arraySeleccionadas.join(",");
-  /**/
-
   try {
-    await fetch(laravelApi + "/api/guardar-ubicaciones", {
-      method: "POST",
-      body: JSON.stringify({
-        ubicaciones: seleccionadas,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-        "Authorization": "Bearer " + sessionStorage.getItem("token")
-      }
-    });
+    let seleccionadas = localStorage.getItem("seleccionadas");
+    if (!(seleccionadas == null || seleccionadas == "")) {
+      let seleccionadasObj = JSON.parse(seleccionadas);
+      let ubicacionesConInfo = Object.entries(seleccionadasObj).map(([nombre, info]) => ({ nombre, ...info }));
+      console.log(ubicacionesConInfo);/////////////
+      await fetch(laravelApi + "/api/guardar-ubicaciones", {
+        method: "POST",
+        body: JSON.stringify({
+          ubicaciones: ubicacionesConInfo,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          "Authorization": "Bearer " + sessionStorage.getItem("token")
+        }
+      });
+    }
   } catch (error) {
     console.error('Error:', error);
   }
-
 }
 
 async function obtenerLStorage() {

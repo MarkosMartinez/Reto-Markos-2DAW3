@@ -139,7 +139,7 @@ async function logueo_correcto() {
     contrasena_registro.value = "";
     confirmar_contrasena_registro.value = "";
     contrasena_registro.value = "";
-    if (localStorage.getItem("seleccionadas") == null)
+    if (localStorage.getItem("seleccionadas") == null || localStorage.getItem("seleccionadas") == "" || localStorage.getItem("seleccionadas")  == [])
         await obtenerLStorage();
 
     inicializarMapa();
