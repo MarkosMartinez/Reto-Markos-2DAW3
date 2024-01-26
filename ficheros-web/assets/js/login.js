@@ -153,6 +153,7 @@ function logueo_incorrecto() {
 function registro_incorrecto() {
     register_incorrecto.style.display = "block";
     contrasena_registro.value = "";
+    confirmar_contrasena_registro.value = "";
 }
 
 async function cerrar_sesion() {

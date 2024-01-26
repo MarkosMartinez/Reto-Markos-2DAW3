@@ -69,6 +69,7 @@ async function actualizarTemperaturas() {
                         <div><i class="fas fa-tint fa-fw" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["humedad"]}% </span></div>
                         <div><i class="fas fa-wind fa-fw" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["viento"]} km/h </span></div>
                         <div><i class="fa-solid fa-thermometer" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["sensacion_termica"] ?? "--"}ºC </span></div>
+                        <div><img src="https://cdn.icon-icons.com/icons2/37/PNG/512/pressure_3151.png" width="18px"> <span class="ms-1"> ${ubicacion["presion"] ?? "--"} hPa </span></div>
                       </div>
                       <div>
                         <img onmousedown="return false" class="${obtenerClima(ubicacion["tiempo"])}" width="100px height="100px"">
