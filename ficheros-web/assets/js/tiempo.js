@@ -5,10 +5,16 @@ obtenerPronosticoManana();
 
 const opciones = { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' };
 async function actualizarTemperaturas() {
-  ubicaciones = localStorage.getItem("seleccionadas");
   //console.log("Actualizando temperaturas...");
+  ubicaciones = localStorage.getItem("seleccionadas");
 
-  if (!(ubicaciones == "null" || ubicaciones == null || comprobandoLogin == true || ubicaciones == "")) {
+  if (!(ubicaciones == [] || ubicaciones == "null" || ubicaciones == null || comprobandoLogin == true || ubicaciones == "")) {
+    ubicaciones = [];
+    JSON.parse(localStorage.getItem("seleccionadas")).forEach(function (ubicacion) {
+      if (ubicacion.nombre) {
+          ubicaciones.push(ubicacion.nombre);
+      }
+  });
 
     document.querySelectorAll('.nav-link.disabled').forEach(elemento => {
       elemento.classList.remove('disabled');
@@ -85,7 +91,7 @@ async function actualizarTemperaturas() {
 }
 
 setInterval(() => {
-  if (ubicaciones == "null" || ubicaciones == null || ubicaciones == "" || comprobandoLogin == true) {
+  if (ubicaciones == [] || ubicaciones == null || ubicaciones == "" || comprobandoLogin == true) {
     document.querySelectorAll('.nav-link.enabled').forEach(elemento => {
       elemento.classList.remove('enabled');
       elemento.classList.add('disabled');
