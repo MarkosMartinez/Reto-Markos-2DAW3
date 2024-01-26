@@ -1,19 +1,20 @@
-var ubicaciones = [];
+var ubicaciones;
 var pronosticoMañana = [];
 obtenerPronosticoManana();
 
 
 const opciones = { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' };
 async function actualizarTemperaturas() {
-  console.log("Actualizando temperaturas...");
-  
-  JSON.parse(localStorage.getItem("seleccionadas")).forEach(function (ubicacion) {
-    if (ubicacion.nombre) {
-        ubicaciones.push(ubicacion.nombre);
-    }
-});
+  //console.log("Actualizando temperaturas...");
+  ubicaciones = localStorage.getItem("seleccionadas");
 
-  if (!(ubicaciones == [] || ubicaciones == null || comprobandoLogin == true || ubicaciones == "")) {
+  if (!(ubicaciones == [] || ubicaciones == "null" || ubicaciones == null || comprobandoLogin == true || ubicaciones == "")) {
+    ubicaciones = [];
+    JSON.parse(localStorage.getItem("seleccionadas")).forEach(function (ubicacion) {
+      if (ubicacion.nombre) {
+          ubicaciones.push(ubicacion.nombre);
+      }
+  });
 
     document.querySelectorAll('.nav-link.disabled').forEach(elemento => {
       elemento.classList.remove('disabled');

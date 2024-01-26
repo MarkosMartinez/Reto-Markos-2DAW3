@@ -81,13 +81,14 @@ function cargarMapa() {
 function ubicacionSeleccionada(nombre) {
   let seleccionadas = localStorage.getItem("seleccionadas");
   
-  if (seleccionadas == null || seleccionadas == "null" || seleccionadas == "" || seleccionadas == []) {
-    const primeraUbicacion = {
-      [nombre]: {
+  if (seleccionadas == null || seleccionadas == []) {
+    const primeraUbicacion = [
+      { 
+        nombre: nombre,
         viento: false,
         sensacionTermica: false
       }
-    };
+    ];
     localStorage.setItem("seleccionadas", JSON.stringify(primeraUbicacion));
     addCardLoading();
   } else {
@@ -123,14 +124,14 @@ function ubicacionSeleccionada(nombre) {
 async function guardarLStorage() {
   try {
     let seleccionadas = localStorage.getItem("seleccionadas");
-    if (!(seleccionadas == null || seleccionadas == "")) {
+    if (!(seleccionadas == null || seleccionadas == "" || seleccionadas == [])) {
       let seleccionadasObj = JSON.parse(seleccionadas);
-      let ubicacionesConInfo = Object.entries(seleccionadasObj).map(([nombre, info]) => ({ nombre, ...info }));
-      console.log(ubicacionesConInfo);/////////////
+      //let ubicacionesConInfo = Object.entries(seleccionadasObj).map(([nombre, info]) => ({ nombre, ...info }));
+      //console.log(seleccionadasObj);
       await fetch(laravelApi + "/api/guardar-ubicaciones", {
         method: "POST",
         body: JSON.stringify({
-          ubicaciones: ubicacionesConInfo,
+          ubicaciones: seleccionadasObj,
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -155,6 +156,7 @@ async function obtenerLStorage() {
     let data = await respuesta.json();
     //console.log(data);
     if (data["success"]) {
+      if(data["ubicaciones"] != null)
       localStorage.setItem("seleccionadas", data["ubicaciones"]);
     } else {
       throw "Error"
