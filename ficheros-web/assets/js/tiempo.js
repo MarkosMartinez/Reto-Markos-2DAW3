@@ -8,7 +8,13 @@ async function actualizarTemperaturas() {
   //console.log("Actualizando temperaturas...");
   ubicaciones = localStorage.getItem("seleccionadas");
 
-  if (!(ubicaciones == [] || ubicaciones == "null" || ubicaciones == null || comprobandoLogin == true || ubicaciones == "")) {
+  if (ubicaciones == [] || ubicaciones == null || ubicaciones == "null" || comprobandoLogin == true || ubicaciones == "") {
+    document.querySelectorAll('.nav-link.enabled').forEach(elemento => {
+      elemento.classList.remove('enabled');
+      elemento.classList.add('disabled');
+    });
+
+  }else{
     ubicaciones = [];
     JSON.parse(localStorage.getItem("seleccionadas")).forEach(function (ubicacion) {
       if (ubicacion.nombre) {
@@ -19,12 +25,6 @@ async function actualizarTemperaturas() {
     document.querySelectorAll('.nav-link.disabled').forEach(elemento => {
       elemento.classList.remove('disabled');
       elemento.classList.add('enabled');
-    });
-
-  }else{
-    document.querySelectorAll('.nav-link.enabled').forEach(elemento => {
-      elemento.classList.remove('enabled');
-      elemento.classList.add('disabled');
     });
   }
 

@@ -52,16 +52,18 @@ function cargarMapa() {
       // });
       marker.bindTooltip(lugar.nombre);
 
-      let seleccionadasObj = JSON.parse(localStorage.getItem("seleccionadas"));
-      if (seleccionadasObj && Object.keys(seleccionadasObj).length > 0) {
-        seleccionadasObj.forEach(ubicacion => {
-          if (ubicacion.nombre == lugar.nombre) {
-            marker._icon.classList.add('seleccionado');
-          }
+      if(!(localStorage.getItem("seleccionadas") == "" || localStorage.getItem("seleccionadas") == [] || localStorage.getItem("seleccionadas") == null)){
+        let seleccionadasObj = JSON.parse(localStorage.getItem("seleccionadas"));
+        if (seleccionadasObj && Object.keys(seleccionadasObj).length > 0) {
+          seleccionadasObj.forEach(ubicacion => {
+            if (ubicacion.nombre == lugar.nombre) {
+              marker._icon.classList.add('seleccionado');
+            }
 
-        });
-        
-      }
+          });
+          
+        }
+    }
 
       marker.on('click', function () {
         this._icon.classList.toggle('seleccionado');
