@@ -27,3 +27,6 @@ img.seleccionado {
     background: #ffffff;
     height: 500px;
 }
+.itemsdrop{
+    display: none;
+}

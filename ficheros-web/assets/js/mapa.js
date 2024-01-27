@@ -105,7 +105,6 @@ function ubicacionSeleccionada(nombre) {
     if (encontradoIndex != -1) {
       seleccionadasObj.splice(encontradoIndex, 1);
     }else{
-      //FIXME Arreglar esto y tiempo js 10: "TypeError: JSON.parse(...) is null" cuando no hay seleccion
       let nuevaSeleccion = {
           nombre: nombre,
           viento: false,

@@ -66,10 +66,10 @@ async function actualizarTemperaturas() {
         
                     <div class="d-flex align-items-center">
                       <div class="flex-grow-1" style="font-size: 1rem;">
-                        <div><i class="fas fa-tint fa-fw" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["humedad"]}% </span></div>
-                        <div><i class="fas fa-wind fa-fw" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["viento"]} km/h </span></div>
-                        <div><i class="fa-solid fa-thermometer" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["sensacion_termica"] ?? "--"}ºC </span></div>
-                        <div><img src="https://cdn.icon-icons.com/icons2/37/PNG/512/pressure_3151.png" width="18px"> <span class="ms-1"> ${ubicacion["presion"] ?? "--"} hPa </span></div>
+                        <div class="itemsdrop" id="${ubicacion["nombre"]}_humedad"><i class="fas fa-tint fa-fw" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["humedad"]}% </span></div>
+                        <div class="itemsdrop" id="${ubicacion["nombre"]}_viento"><i class="fas fa-wind fa-fw" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["viento"]} km/h </span></div>
+                        <div class="itemsdrop" id="${ubicacion["nombre"]}_sensacion_termica"><i class="fa-solid fa-thermometer" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["sensacion_termica"] ?? "--"}ºC </span></div>
+                        <div class="itemsdrop" id="${ubicacion["nombre"]}_presion"><i class="fa-solid fa-gauge-simple-low" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["presion"] ?? "--"} hPa </span></div>
                       </div>
                       <div>
                         <img onmousedown="return false" class="${obtenerClima(ubicacion["tiempo"])}" width="100px height="100px"">
@@ -200,6 +200,7 @@ function addCardLoading() {
           <div><i class="fas fa-tint fa-fw" style="color: #868B94;"></i> <span class="ms-1"> --% </span></div>
           <div><i class="fas fa-wind fa-fw" style="color: #868B94;"></i> <span class="ms-1"> --km/h </span></div>
           <div><i class="fas fa-sun fa-fw" style="color: #868B94;"></i> <span class="ms-1"> --ºC </span></div>
+          <div><i class="fa-solid fa-gauge-simple-low" style="color: #868B94;"></i> <span class="ms-1"> --hPa </span></div>
         </div>
       </div>
     </div>
@@ -213,11 +214,11 @@ async function obtenerPronosticoManana() {
   fecha.setDate(fecha.getDate() + 1);
   let fechaHasta = `${fecha.getFullYear()}${(fecha.getMonth() + 1).toString().padStart(2, '0')}${fecha.getDate().toString().padStart(2, '0')}`;
 
-  let urls = [`https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/coast_zone/locations/hondarribia/forecast/at/${fechaDesde}/for/${fechaHasta}`, `https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/donostialdea/locations/errenteria/forecast/at/${fechaDesde}/for/${fechaHasta}`, `https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/donostialdea/locations/donostia/forecast/at/${fechaDesde}/for/${fechaHasta}`, `https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/great_bilbao/locations/bilbao/forecast/at/${fechaDesde}/for/${fechaHasta}`];
+  let urls = [`coast_zone/locations/hondarribia/forecast/at/${fechaDesde}/for/${fechaHasta}`, `donostialdea/locations/errenteria/forecast/at/${fechaDesde}/for/${fechaHasta}`, `donostialdea/locations/donostia/forecast/at/${fechaDesde}/for/${fechaHasta}`, `great_bilbao/locations/bilbao/forecast/at/${fechaDesde}/for/${fechaHasta}`];
 
   for (let i = 0; i < urls.length; i++) {
     $.ajax({
-      "url": urls[i],
+      "url": "https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/" + urls[i],
       "method": "GET",
       "timeout": 0,
       "headers": {
