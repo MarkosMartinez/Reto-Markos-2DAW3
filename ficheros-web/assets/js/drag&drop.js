@@ -1,7 +1,8 @@
 let elemento_arrastrandose;
 function arrastrando(evento){
     //Guardarlo en una variable y luego vaciarla?
-    console.log("Arrastrando: " + evento.target.id);
+    
+    //console.log("Arrastrando: " + evento.target.id);
     elemento_arrastrandose = evento.target.id;
 }
 
@@ -12,7 +13,7 @@ function soltar(evento, soltado) {
     //console.log("Soltado en: " + soltado.id);
     let ciudad = soltado.id.split("card_")[1];
     let id = ciudad + "_" + elemento_arrastrandose.split("dd_")[1];
-    console.log("Ciudad: " + ciudad + " / ID: " + id + " / elemento arrastrandose: " + elemento_arrastrandose.split("dd_")[1]);
+    //console.log("Ciudad: " + ciudad + " / ID: " + id + " / elemento arrastrandose: " + elemento_arrastrandose.split("dd_")[1]);
     let elemento = document.getElementById(id);
     elemento.style.display = "block";
     let ls = localStorage.getItem("seleccionadas");
