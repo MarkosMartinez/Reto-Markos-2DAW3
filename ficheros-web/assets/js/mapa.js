@@ -88,7 +88,8 @@ function ubicacionSeleccionada(nombre) {
       { 
         nombre: nombre,
         viento: false,
-        sensacionTermica: false
+        sensacionTermica: false,
+        presion: false
       }
     ];
     localStorage.setItem("seleccionadas", JSON.stringify(primeraUbicacion));
@@ -108,7 +109,8 @@ function ubicacionSeleccionada(nombre) {
       let nuevaSeleccion = {
           nombre: nombre,
           viento: false,
-          sensacionTermica: false
+          sensacionTermica: false,
+          presion: false
       };
       seleccionadasObj.push(nuevaSeleccion);
       addCardLoading();

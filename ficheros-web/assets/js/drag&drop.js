@@ -12,12 +12,19 @@ function soltar(evento, soltado) {
     //console.log("Soltado en: " + soltado.id);
     let ciudad = soltado.id.split("card_")[1];
     let id = ciudad + "_" + elemento_arrastrandose.split("dd_")[1];
-    console.log("Ciudad: " + ciudad + " / ID: " + id);
+    console.log("Ciudad: " + ciudad + " / ID: " + id + " / elemento arrastrandose: " + elemento_arrastrandose.split("dd_")[1]);
     let elemento = document.getElementById(id);
     elemento.style.display = "block";
-    // var data = evento.dataTransfer.getData("text");
-    // evento.target.appendChild(document.getElementById(data));
+    let ls = localStorage.getItem("seleccionadas");
+    let seleccionadasObj = JSON.parse(ls);
+    seleccionadasObj.forEach((ciudadls) => {
+        if (ciudadls.nombre == ciudad) {
+            ciudadls[elemento_arrastrandose.split("dd_")[1]] = true;
+        }
+      });
     elemento_arrastrandose = null;
+    localStorage.setItem("seleccionadas", JSON.stringify(seleccionadasObj));
+    guardarLStorage();
 }
 
 function permitirSoltar(evento) {

@@ -39,6 +39,9 @@ async function actualizarTemperaturas() {
       let data = await respuesta.json();
       //console.log(data);
       cardHtml = "";
+      let ls = localStorage.getItem("seleccionadas");
+      let seleccionadasObj = JSON.parse(ls);
+      let ciudadls;
       data.forEach(ubicacion => {
         $(`.${ubicacion["nombre"]}`).tooltip("dispose");
 
@@ -49,6 +52,14 @@ async function actualizarTemperaturas() {
           t_real = true;
           temperatura = ubicacion["temperatura_real"];
         }
+
+        console.log(ubicacion["nombre"]);
+        ciudadls = seleccionadasObj.find(function(lugar) {
+          //foreach??
+          if(lugar.nombre == ubicacion["nombre"]);
+            return lugar;
+        });
+        console.log(JSON.stringify(ciudadls) + " / " + ciudadls.viento);
 
         cardHtml += `<div id="card_${ubicacion['nombre']}" class="col-lg-6 col-md-6 col-sm-12 ${ubicacion["nombre"]}" ondrop="soltar(event, this)" ondragover="permitirSoltar(event)" title='𝗧𝗲𝗺𝗽𝗲𝗿𝗮𝘁𝘂𝗿𝗮 𝗱𝗲 𝗺𝗮𝗻̃𝗮𝗻𝗮: ${pronosticoMañana.find(ubiPronostico => ubiPronostico.ciudad == ubicacion["nombre"].toLowerCase()) ? pronosticoMañana.find(ubiPronostico => ubiPronostico.ciudad == ubicacion["nombre"].toLowerCase()).temperatura : "No disponible"}'>
                 <div class="card" style="color: #4B515D; border-radius: 35px;">
@@ -66,10 +77,10 @@ async function actualizarTemperaturas() {
         
                     <div class="d-flex align-items-center">
                       <div class="flex-grow-1" style="font-size: 1rem;">
-                        <div class="itemsdrop" id="${ubicacion["nombre"]}_humedad"><i class="fas fa-tint fa-fw" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["humedad"]}% </span></div>
-                        <div class="itemsdrop" id="${ubicacion["nombre"]}_viento"><i class="fas fa-wind fa-fw" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["viento"]} km/h </span></div>
-                        <div class="itemsdrop" id="${ubicacion["nombre"]}_sensacion_termica"><i class="fa-solid fa-thermometer" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["sensacion_termica"] ?? "--"}ºC </span></div>
-                        <div class="itemsdrop" id="${ubicacion["nombre"]}_presion"><i class="fa-solid fa-gauge-simple-low" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["presion"] ?? "--"} hPa </span></div>
+                        <div><i class="fas fa-tint fa-fw" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["humedad"]}% </span></div>
+                        <div ${ciudadls.viento ? '' : 'class="itemsdrop"'} id="${ubicacion["nombre"]}_viento"><i class="fas fa-wind fa-fw" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["viento"]} km/h </span></div>
+                        <div ${ciudadls.sensacionTermica ? '' : 'class="itemsdrop"'} id="${ubicacion["nombre"]}_sensacion_termica"><i class="fa-solid fa-thermometer" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["sensacion_termica"] ?? "--"}ºC </span></div>
+                        <div ${ciudadls.presion ? '' : 'class="itemsdrop"'} id="${ubicacion["nombre"]}_presion"><i class="fa-solid fa-gauge-simple-low" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["presion"] ?? "--"} hPa </span></div>
                       </div>
                       <div>
                         <img onmousedown="return false" class="${obtenerClima(ubicacion["tiempo"])}" width="100px height="100px"">
