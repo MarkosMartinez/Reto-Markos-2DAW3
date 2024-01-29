@@ -16,7 +16,7 @@ if (sessionStorage.getItem("token")) {
             btn_login.disabled = false;
             btn_login.style.opacity = 1;
         } else {
-            cerrar_sesion();
+            cerrar_sesion(1);
             logueo_incorrecto();
             btn_login.disabled = false;
             btn_login.style.opacity = 1;
@@ -156,13 +156,14 @@ function registro_incorrecto() {
     confirmar_contrasena_registro.value = "";
 }
 
-async function cerrar_sesion() {
+async function cerrar_sesion(tipo=0) {
     let token_anterior = sessionStorage.getItem("token");
     form_login.style.display = "block";
     contenido.style.display = "none";
     btn_cerrar_sesion.style.display = "none";
     sessionStorage.clear();
     localStorage.clear();
+    if(tipo == 1){
     try {
         await fetch(laravelApi + "/api/logout", {
             method: "GET",
@@ -173,6 +174,7 @@ async function cerrar_sesion() {
         });
     } catch (error) {
         console.error('Error en el logout:', error);
+    }
     }
     token_anterior = "";
 }

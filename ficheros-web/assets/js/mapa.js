@@ -79,6 +79,12 @@ function cargarMapa() {
     });
   }
 }
+function eliminarMapaCargado() {
+  if (map) {
+    map.remove();
+    map = null;
+  }
+}
 
 function ubicacionSeleccionada(nombre) {
   let seleccionadas = localStorage.getItem("seleccionadas");

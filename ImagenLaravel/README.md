@@ -23,15 +23,19 @@ services:
     container_name: LaravelPassport
     volumes:
       - ./mi-proyecto/:/var/www/html/
-      # Por defecto el puerto utilizado en laravel es el 8000
+    environment:
+      # Por defecto el modo utilizado es 'USAR_WORKER: 0'
+      USAR_WORKER: 0
     ports:
-      - "8080:8000"
+     # Por defecto el puerto utilizado en laravel es el '8000'
+      - "81:8000"
     depends_on:
       - mysql
 ```
 
 - Donde pone 'container_name: LaravelPasspor', es el nombre que usara el contenedor.
 - Donde pone 'volumes: - ./mi-proyecto/:/var/www/html/', es la ruta donde se encuentran los ficheros del proyecto de Laravel y seguido de ':' la ruta en la que se almacenara en el contenedor.
+- Donde pone 'environment: USAR_WORKER: 0', cambia el modo de funcionamiento de 'php artisan serve' a 'php artisan schedule:work' para hacer funcionar los 'schedule's
 - Donde pone 'ports: - 8080:8000', el '8080', es el puerto que se usara para acceder al 8000 del contenedor de Laravel.
 (_8000 por defecto_)
 - Donde pone 'depends_on: - mysql', especifica que el contenedor no se iniciara hasta que el MySQL arranque.
