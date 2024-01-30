@@ -85,6 +85,9 @@ function eliminarMapaCargado() {
     map = null;
   }
 }
+function checkMapaCargado() {
+  return map !== null;
+}
 
 function ubicacionSeleccionada(nombre) {
   let seleccionadas = localStorage.getItem("seleccionadas");
@@ -175,3 +178,52 @@ async function obtenerLStorage() {
     logueo_incorrecto();
   }
 }
+
+
+/* -- Sistema para descargar / cargar el mapa al estar en otras tabs --*/
+let timer;
+let timerFuera;
+function comprobadorDeTabs() {
+    const tabs = document.querySelectorAll('.nav-link');
+    tabs.forEach(tab => {
+        tab.addEventListener('shown.bs.tab', function (event) {
+            const selectedTabId = event.target.getAttribute('aria-controls');
+            //console.log('Pestaña seleccionada:', selectedTabId);
+            if(selectedTabId != "mapa-tabpanel"){
+                if(!timer){
+                    timer = setTimeout(comprobarTiempoFuera, tiempoLimite);
+                    timerFuera = setInterval(() => {
+                        tiempoFuera ++;
+                    }, 1000);
+            }
+            }else{
+                if(timer){
+                    if(checkMapaCargado() == false){
+                        console.log("Cargando el mapa...");
+                        cargarMapa();
+                    }
+                    clearTimeout(timer);
+                    timer = undefined;
+                    clearInterval(timerFuera);
+                    timerFuera = undefined;
+                    tiempoFuera = 0;
+                }
+            }
+        });
+    });
+}
+
+let tiempoFuera = 0;
+let tiempoLimite = 10000; // 10 segundos en milisegundos
+
+function comprobarTiempoFuera() {
+    tiempoFuera += tiempoLimite;
+    if (tiempoFuera > tiempoLimite) {
+        console.log('Descargando mapa...');
+        eliminarMapaCargado();
+    }
+}
+
+setTimeout(() => {
+    comprobadorDeTabs();
+}, 500);

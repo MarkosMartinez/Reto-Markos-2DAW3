@@ -163,7 +163,7 @@ async function cerrar_sesion(tipo=0) {
     btn_cerrar_sesion.style.display = "none";
     sessionStorage.clear();
     localStorage.clear();
-    if(tipo == 1){
+    if(tipo == 0){
     try {
         await fetch(laravelApi + "/api/logout", {
             method: "GET",
