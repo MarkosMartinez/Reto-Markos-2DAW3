@@ -42,10 +42,12 @@ async function actualizarGrafico(fechaInicio, fechaFin, ubicacion = "Hondarribia
             },
         });
         let data = await respuesta.json();
+        //console.log(data);
         data.forEach((temperatura) => {
             if (temperatura["nombre"] == ubicacion) {
                 temperaturas.push(temperatura["temperatura"]);
                 intervaloTiempo.push(temperatura["fecha"]);
+                //console.log("Entraaa. Temperatura: " + temperaturas + " intervalos: " + intervaloTiempo);
             }
         });
     } catch (error) {
@@ -59,6 +61,7 @@ async function actualizarGrafico(fechaInicio, fechaFin, ubicacion = "Hondarribia
         chartInstance.destroy();
     }
 
+    //console.log(temperaturas + " intervalo: " + intervaloTiempo);
     chartInstance = new Chart(ctx, {
         type: "bar",
         data: {
@@ -80,3 +83,33 @@ async function actualizarGrafico(fechaInicio, fechaFin, ubicacion = "Hondarribia
         },
     });
 }
+
+
+            var fechaInicioInput = document.getElementById('fechainicio');
+            var fechaFinInput = document.getElementById('fechafin');
+
+            fechaInicioInput.addEventListener('change', function() {
+              var fechaInicio = new Date(fechaInicioInput.value);
+              var fechaFin = new Date(fechaFinInput.value);
+              var fechaActual = new Date();
+              if (fechaFin < fechaInicio) {
+                fechaFinInput.value = fechaInicioInput.value;
+              }
+              if (fechaFin > fechaActual) {
+                fechaFinInput.value = fechaActual.toISOString().slice(0, 16);
+              }
+            });
+
+            fechaFinInput.addEventListener('change', function() {
+              var fechaInicio = new Date(fechaInicioInput.value);
+              var fechaFin = new Date(fechaFinInput.value);
+
+              var fechaActual = new Date();
+
+              if (fechaFin < fechaInicio) {
+                fechaFinInput.value = fechaInicioInput.value;
+              }
+              if (fechaFin > fechaActual) {
+                fechaFinInput.value = fechaActual.toISOString().slice(0, 16);
+              }
+            });
