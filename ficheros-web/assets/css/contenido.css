@@ -26,7 +26,22 @@ img.seleccionado {
     border-radius: 50px;
     background: #ffffff;
     height: 500px;
+    position: relative;
 }
 .itemsdrop{
     display: none;
+}
+
+.dd_borrar{
+    margin-left: 5%;
+    width: 85%;
+    height: 70px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: red;
+    position: absolute;
+    bottom: 20px;
+}
+.papelera{
+    padding-top: 35px;
 }
