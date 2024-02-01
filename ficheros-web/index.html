@@ -183,9 +183,9 @@
         </div>
       </div>
       <div class="tab-pane" id="estadisticas-tabpanel" role="tabpanel" aria-labelledby="estadisticas-tab">
-        <form id="form_grafico" class="" onsubmit="event.preventDefault();">
-          <input type="datetime-local" name="" id="fechainicio" value="2023-01-01T00:00" min="2023-01-01T00:00" onchange="actualizarGrafico(fechainicio.value, fechafin.value, selectGrafico.value)">
-          <input type="datetime-local" name="" id="fechafin" value="2023-12-31T23:45" min="2023-01-01T00:15" onchange="actualizarGrafico(fechainicio.value, fechafin.value, selectGrafico.value)">
+        <form id="form_grafico" onsubmit="event.preventDefault();">
+          <input type="datetime-local" name="" id="fechainicio" value="2023-01-01T00:00" min="2023-01-01T00:00">
+          <input type="datetime-local" name="" id="fechafin" value="2023-12-31T23:45" min="2023-01-01T00:15">
           <select name="" id="selectGrafico" onchange="actualizarGrafico(fechainicio.value, fechafin.value, selectGrafico.value)"></select>
         </form>
         <canvas id="contGrafico"></canvas>

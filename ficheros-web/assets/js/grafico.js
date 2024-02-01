@@ -65,9 +65,9 @@ async function actualizarGrafico(fechaInicio, fechaFin, ubicacion = "Hondarribia
         console.error("Error en el grafico:", error);
     }
 
+    if(temperaturas.length == 0) return console.log("Sin datos! Omitiendo grafico...");
     const ctx = document.getElementById("contGrafico");
 
-    // Destroy the existing chart if it exists
     if (chartInstance) {
         chartInstance.destroy();
     }
@@ -97,31 +97,38 @@ async function actualizarGrafico(fechaInicio, fechaFin, ubicacion = "Hondarribia
 }
 
 
-            var fechaInicioInput = document.getElementById('fechainicio');
-            var fechaFinInput = document.getElementById('fechafin');
+var fechaInicioInput = document.getElementById("fechainicio");
+var fechaFinInput = document.getElementById("fechafin");
 
-            fechaInicioInput.addEventListener('change', function() {
-              var fechaInicio = new Date(fechaInicioInput.value);
-              var fechaFin = new Date(fechaFinInput.value);
-              var fechaActual = new Date();
-              if (fechaFin < fechaInicio) {
-                fechaFinInput.value = fechaInicioInput.value;
-              }
-              if (fechaFin > fechaActual) {
-                fechaFinInput.value = fechaActual.toISOString().slice(0, 16);
-              }
-            });
+fechaInicioInput.addEventListener("change", function () {
+    var fechaInicio = new Date(fechaInicioInput.value);
+    var fechaFin = new Date(fechaFinInput.value);
+    var fechaActual = new Date();
+    if (fechaFin < fechaInicio) {
+    fechaFinInput.value = fechaInicioInput.value;
+    }
+    if (fechaFin > fechaActual) {
+    fechaFinInput.value = fechaActual.toISOString().slice(0, 16);
+    }
+    actualizarGrafico(fechainicio.value, fechafin.value, selectGrafico.value);
+});
 
-            fechaFinInput.addEventListener('change', function() {
-              var fechaInicio = new Date(fechaInicioInput.value);
-              var fechaFin = new Date(fechaFinInput.value);
+fechaFinInput.addEventListener("change", function () {
+    var fechaInicio = new Date(fechaInicioInput.value);
+    var fechaFin = new Date(fechaFinInput.value);
 
-              var fechaActual = new Date();
+    var fechaActual = new Date();
 
-              if (fechaFin < fechaInicio) {
-                fechaFinInput.value = fechaInicioInput.value;
-              }
-              if (fechaFin > fechaActual) {
-                fechaFinInput.value = fechaActual.toISOString().slice(0, 16);
-              }
-            });
+    if (fechaFin < fechaInicio) {
+    fechaFinInput.value = fechaInicioInput.value;
+    }
+    if (fechaFin > fechaActual) {
+    fechaFinInput.value = fechaActual.toISOString().slice(0, 16);
+    }
+    actualizarGrafico(fechainicio.value, fechafin.value, selectGrafico.value);
+});
+
+
+var ahora = new Date().toISOString().slice(0, 16);
+fechafin.max = ahora;
+fechainicio.max = ahora;
