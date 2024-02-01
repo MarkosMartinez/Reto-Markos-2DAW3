@@ -25,6 +25,18 @@ async function actualizarSelects(){
     actualizarGrafico(fechaInicio, fechaFin, graficoSeleccionado);
 }
 
+function colorizar(opaque) {
+    return (ctx) => {
+      const v = ctx.parsed.y;
+      const c = v < 0 ? 'rgba(63, 141, 249, 1)'
+        : v > 0 && v < 15 ? 'rgba(0, 192, 32, 1)'
+        : v > 15 && v < 25 ? 'rgba(245, 118, 63, 1)'
+        : v > 25 ? 'rgba(249, 85, 71, 1)'
+        : 'rgba(0, 192, 0, 1)';
+  
+      return opaque ? c : Utils.transparentize(c, 1 - Math.abs(v / 150));
+    };
+  }
 
 let chartInstance; // Variable to store the chart instance
 
@@ -47,7 +59,6 @@ async function actualizarGrafico(fechaInicio, fechaFin, ubicacion = "Hondarribia
             if (temperatura["nombre"] == ubicacion) {
                 temperaturas.push(temperatura["temperatura"]);
                 intervaloTiempo.push(temperatura["fecha"]);
-                //console.log("Entraaa. Temperatura: " + temperaturas + " intervalos: " + intervaloTiempo);
             }
         });
     } catch (error) {
@@ -61,7 +72,6 @@ async function actualizarGrafico(fechaInicio, fechaFin, ubicacion = "Hondarribia
         chartInstance.destroy();
     }
 
-    //console.log(temperaturas + " intervalo: " + intervaloTiempo);
     chartInstance = new Chart(ctx, {
         type: "bar",
         data: {
@@ -71,6 +81,8 @@ async function actualizarGrafico(fechaInicio, fechaFin, ubicacion = "Hondarribia
                     label: "Temperatura media en " + ubicacion,
                     data: temperaturas,
                     borderWidth: 1,
+                    borderColor: colorizar(true),
+                    backgroundColor: colorizar(true),
                 },
             ],
         },

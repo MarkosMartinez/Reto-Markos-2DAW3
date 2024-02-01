@@ -214,7 +214,7 @@ function comprobadorDeTabs() {
 }
 
 let tiempoFuera = 0;
-let tiempoLimite = 10000; // 10 segundos en milisegundos
+let tiempoLimite = 5000; // 5 segundos en milisegundos
 
 function comprobarTiempoFuera() {
     tiempoFuera += tiempoLimite;
