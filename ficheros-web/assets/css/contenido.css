@@ -41,7 +41,16 @@ img.seleccionado {
     background-color: red;
     position: absolute;
     bottom: 20px;
+    transition: 0.5s;
+}
+#dd_borrar:hover{
+    background-color: rgb(180, 7, 7);
+    transition: 0.5s;
+    cursor: pointer;
 }
 .papelera{
     padding-top: 35px;
+}
+.draggable{
+    cursor: grab;
 }

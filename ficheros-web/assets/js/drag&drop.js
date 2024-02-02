@@ -46,7 +46,7 @@ function eliminarElemento(soltado){
     let datos = elemento_arrastrandose.split("card_")[1];
     let item = datos.split("-")[0];
     let ciudad = datos.split("-")[1];
-    console.log("Item: " + item + " / Ciudad: " + ciudad);
+    //console.log("Item: " + item + " / Ciudad: " + ciudad);
     let id = ciudad + "_" + item;
     let elemento = document.getElementById(id);
     elemento.style.display = "none";
@@ -59,4 +59,19 @@ function eliminarElemento(soltado){
       });
     
     localStorage.setItem("seleccionadas", JSON.stringify(seleccionadasObj));
+    }
+
+    function vaciarDragAndDrop(){
+        console.log("vaciando...");
+
+        let ls = localStorage.getItem("seleccionadas");
+        let seleccionadasObj = JSON.parse(ls);
+        seleccionadasObj.forEach((ciudadls) => {
+                ciudadls["viento"] = false;
+                ciudadls["sensacion_termica"] = false;
+                ciudadls["presion"] = false;
+          });
+          localStorage.setItem("seleccionadas",  JSON.stringify(seleccionadasObj));
+          guardarLStorage();
+          actualizarTemperaturas();
     }
