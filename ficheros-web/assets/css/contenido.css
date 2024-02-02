@@ -32,7 +32,7 @@ img.seleccionado {
     display: none;
 }
 
-.dd_borrar{
+#dd_borrar{
     margin-left: 5%;
     width: 85%;
     height: 70px;

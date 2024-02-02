@@ -75,9 +75,9 @@ async function actualizarTemperaturas() {
                     <div class="d-flex align-items-center">
                       <div class="flex-grow-1" style="font-size: 1rem;">
                         <div><i class="fas fa-tint fa-fw" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["humedad"]}% </span></div>
-                        <div ${ciudadls.viento ? '' : 'class="itemsdrop"'} id="${ubicacion["nombre"]}_viento"><i class="fas fa-wind fa-fw" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["viento"]} km/h </span></div>
-                        <div ${ciudadls.sensacion_termica ? '' : 'class="itemsdrop"'} id="${ubicacion["nombre"]}_sensacion_termica"><i class="fa-solid fa-thermometer" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["sensacion_termica"] ?? "--"}ºC </span></div>
-                        <div ${ciudadls.presion ? '' : 'class="itemsdrop"'} id="${ubicacion["nombre"]}_presion"><i class="fa-solid fa-gauge-simple-low" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["presion"] ?? "--"} hPa </span></div>
+                        <div ${ciudadls.viento ? '' : 'class="itemsdrop"'} id="${ubicacion['nombre']}_viento"><i id="card_viento-${ubicacion['nombre']}" draggable="true" ondragstart="arrastrando(event)" class="fas fa-wind fa-fw" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion['viento']} km/h </span></div>
+                        <div ${ciudadls.sensacion_termica ? '' : 'class="itemsdrop"'} id="${ubicacion['nombre']}_sensacion_termica"><i id="card_sensacion_termica-${ubicacion['nombre']}" draggable="true" ondragstart="arrastrando(event)" class="fa-solid fa-thermometer" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion['sensacion_termica'] ?? '--'}ºC </span></div>
+                        <div ${ciudadls.presion ? '' : 'class="itemsdrop"'} id="${ubicacion["nombre"]}_presion"><i id="card_presion-${ubicacion['nombre']}" draggable="true" ondragstart="arrastrando(event)" class="fa-solid fa-gauge-simple-low" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["presion"] ?? "--"} hPa </span></div>
                       </div>
                       <div>
                         <img onmousedown="return false" class="${obtenerClima(ubicacion["tiempo"])}" width="100px height="100px"">
@@ -88,8 +88,8 @@ async function actualizarTemperaturas() {
                 </div>
               </div>`;
       });
-
       huecoCards.innerHTML = cardHtml;
+      
       data.forEach(ubicacion => {
         $(`.${ubicacion["nombre"]}`).tooltip();
       });

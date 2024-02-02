@@ -8,23 +8,13 @@ function arrastrando(evento){
 
 function soltar(evento, soltado) {
     evento.preventDefault();
-    //Esto sera mostrarDatos(dato, card)?
 
-    //console.log("Soltado en: " + soltado.id);
-    let ciudad = soltado.id.split("card_")[1];
-    let id = ciudad + "_" + elemento_arrastrandose.split("dd_")[1];
-    //console.log("Ciudad: " + ciudad + " / ID: " + id + " / elemento arrastrandose: " + elemento_arrastrandose.split("dd_")[1]);
-    let elemento = document.getElementById(id);
-    elemento.style.display = "block";
-    let ls = localStorage.getItem("seleccionadas");
-    let seleccionadasObj = JSON.parse(ls);
-    seleccionadasObj.forEach((ciudadls) => {
-        if (ciudadls.nombre == ciudad) {
-            ciudadls[elemento_arrastrandose.split("dd_")[1]] = true;
-        }
-      });
+    if(elemento_arrastrandose.includes("card_")){
+        eliminarElemento(soltado);
+    }else{
+        añadirElemento(soltado);
+    }
     elemento_arrastrandose = null;
-    localStorage.setItem("seleccionadas", JSON.stringify(seleccionadasObj));
     guardarLStorage();
 }
 
@@ -33,6 +23,40 @@ function permitirSoltar(evento) {
     evento.preventDefault();
   }
 
-function comprobarDisponibilidad(dato, card){
-    //con un switch, si el dato ya esta habilitado en la card, con un return de true o false?
+function añadirElemento(soltado){
+//console.log("Soltado en: " + soltado.id);
+let ciudad = soltado.id.split("card_")[1];
+let id = ciudad + "_" + elemento_arrastrandose.split("dd_")[1];
+//console.log("Ciudad: " + ciudad + " / ID: " + id + " / elemento arrastrandose: " + elemento_arrastrandose.split("dd_")[1]);
+let elemento = document.getElementById(id);
+elemento.style.display = "block";
+let ls = localStorage.getItem("seleccionadas");
+let seleccionadasObj = JSON.parse(ls);
+seleccionadasObj.forEach((ciudadls) => {
+    if (ciudadls.nombre == ciudad) {
+        ciudadls[elemento_arrastrandose.split("dd_")[1]] = true;
+    }
+  });
+localStorage.setItem("seleccionadas", JSON.stringify(seleccionadasObj));
 }
+
+function eliminarElemento(soltado){
+    //console.log("Soltado en: " + soltado.id);
+    if (soltado.id != "dd_borrar") return;
+    let datos = elemento_arrastrandose.split("card_")[1];
+    let item = datos.split("-")[0];
+    let ciudad = datos.split("-")[1];
+    console.log("Item: " + item + " / Ciudad: " + ciudad);
+    let id = ciudad + "_" + item;
+    let elemento = document.getElementById(id);
+    elemento.style.display = "none";
+    let ls = localStorage.getItem("seleccionadas");
+    let seleccionadasObj = JSON.parse(ls);
+    seleccionadasObj.forEach((ciudadls) => {
+        if (ciudadls.nombre == ciudad) {
+            ciudadls[item] = false;
+        }
+      });
+    
+    localStorage.setItem("seleccionadas", JSON.stringify(seleccionadasObj));
+    }
