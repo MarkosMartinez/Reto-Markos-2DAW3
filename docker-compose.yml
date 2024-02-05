@@ -28,7 +28,6 @@ services:
       - "81:8000"
     depends_on:
       - mysql
-      - laravelapi
 
   laravelapi:
     image: markosmartinez/laravelpassport-php8.2
@@ -39,6 +38,7 @@ services:
       USAR_WORKER: 1
     depends_on:
       - mysql
+      - laravelapiweb
   
   #Desde aqui hacia abajo, eliminar antes de terminar
   mysql:
