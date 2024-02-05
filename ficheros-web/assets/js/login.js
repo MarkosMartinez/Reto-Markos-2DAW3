@@ -144,7 +144,7 @@ async function logueo_correcto() {
 
     inicializarMapa();
     actualizarTemperaturas();
-    actualizarSelects();
+    actualizarGrafico(fechaInicio, fechaFin);
 }
 
 function logueo_incorrecto() {
