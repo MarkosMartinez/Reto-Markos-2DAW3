@@ -6,16 +6,16 @@ function colorizar(opaque) {
     return (ctx) => {
       const v = ctx.parsed.y;
       const c = v < 0 ? 'rgba(63, 141, 249, 1)'
-        : v > 0 && v < 15 ? 'rgba(0, 192, 32, 1)'
-        : v > 15 && v < 25 ? 'rgba(245, 118, 63, 1)'
-        : v > 25 ? 'rgba(249, 85, 71, 1)'
+        : v > 0 && v < 15 ? 'rgba(57, 206, 250, 1)'
+        : v > 15 && v < 25 ? 'rgba(245, 154, 63, 1)'
+        : v > 25 ? 'rgba(235, 67, 56, 1)'
         : 'rgba(0, 192, 0, 1)';
   
       return opaque ? c : Utils.transparentize(c, 1 - Math.abs(v / 150));
     };
   }
 
-async function actualizarGrafico(fechaInicio, fechaFin) {
+async function actualizarGrafico(fechaInicio = fechainicio.value, fechaFin = fechafin.value) {
     let = ubicaciones = localStorage.getItem("seleccionadas");
 
     if (ubicaciones == [] || ubicaciones == null || ubicaciones == "null" || ubicaciones == ""|| ubicaciones == "[]") {
