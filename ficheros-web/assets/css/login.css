@@ -120,4 +120,7 @@
     ;
   }
   
+  #lbl_registro:hover{
+    cursor: pointer;
+  }
       

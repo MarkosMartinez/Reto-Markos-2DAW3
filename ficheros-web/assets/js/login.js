@@ -144,7 +144,7 @@ async function logueo_correcto() {
 
     inicializarMapa();
     actualizarTemperaturas();
-    actualizarSelects();
+    actualizarGrafico();
 }
 
 function logueo_incorrecto() {
@@ -178,4 +178,30 @@ async function cerrar_sesion(tipo=0) {
     }
     }
     token_anterior = "";
+}
+
+function verpass(modo = 1){
+    let ojos = document.getElementsByClassName("password");
+    if(modo == 1){
+        if(contrasena_login.type == "password"){
+            contrasena_login.type = "text";
+            ojos[0].src = "assets/img/iconos/ojotapado.svg"
+        }else{
+            contrasena_login.type = "password";
+            ojos[0].src = "assets/img/iconos/ojo.svg"
+        }
+    }else if(modo == 0){
+        if(contrasena_registro.type == "password"){
+            contrasena_registro.type = "text";
+            confirmar_contrasena_registro.type = "text";
+            ojos[1].src = "assets/img/iconos/ojotapado.svg"
+            ojos[2].src = "assets/img/iconos/ojotapado.svg"
+        }else{
+            contrasena_registro.type = "password";
+            confirmar_contrasena_registro.type = "password";
+            ojos[1].src = "assets/img/iconos/ojo.svg"
+            ojos[2].src = "assets/img/iconos/ojo.svg"
+        }
+
+    }
 }

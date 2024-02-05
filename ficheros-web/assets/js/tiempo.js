@@ -90,9 +90,11 @@ async function actualizarTemperaturas() {
       });
       huecoCards.innerHTML = cardHtml;
       
-      data.forEach(ubicacion => {
+      if(data != null){
+        data.forEach(ubicacion => {
         $(`.${ubicacion["nombre"]}`).tooltip();
-      });
+        });
+      }
     } catch (error) {
       console.error('Error:', error);
     }

@@ -130,6 +130,7 @@ function ubicacionSeleccionada(nombre) {
 
   guardarLStorage();
   actualizarTemperaturas();
+  actualizarGrafico();
 }
 
 

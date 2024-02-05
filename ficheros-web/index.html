@@ -28,7 +28,7 @@
     <!--NavBar-->
     <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar temporal?</a>
+        <a class="navbar-brand" href="#"><img class="img-fluid" src="./assets/img/iconos/logo.svg" width="60px" height="60px"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -70,16 +70,9 @@
           <img class="img-fluid" src="assets/img/iconos/candado.svg" width="20" height="20">
           <input type="password" name="contrasena_login" id="contrasena_login" class="input_login" placeholder="Contraseña" required>
           <!--TODO Hacer que funcione-->
-          <img class="img-fluid" src="assets/img/iconos/ojo.svg" width="20" height="20">
+          <img onclick="verpass(1);" class="img-fluid password" src="assets/img/iconos/ojo.svg" width="20" height="20">
         </div>
-        
-        <div class="flex-row"><div>
-          <input type="checkbox">
-          <!--TODO Hacer que funcione?-->
-          <label>Recordar sesion</label>
-          </div>
-        </div>
-        <!--TODO Hacer que el disabled se vea mjr-->
+
         <input type="submit" id="btn_login" class="button-submit" value="Iniciar Sesión">
         <p id="lbl_registro" class="p" onclick="cambiarauth(1)">No tienes cuenta? Registrarte!</p>
         <label id="lbl_checksesion" style="display: none;"><i>Comprobando sesion...</i></label>
@@ -110,7 +103,7 @@
           <img class="img-fluid" src="assets/img/iconos/candado.svg" width="20" height="20">
           <input type="password" name="contrasena_registro" id="contrasena_registro" class="input_login" placeholder="Contraseña" required>
           <!--TODO Hacer que funcione-->
-          <img class="img-fluid" src="assets/img/iconos/ojo.svg" width="20" height="20">
+          <img onclick="verpass(0);" class="img-fluid password" src="assets/img/iconos/ojo.svg" width="20" height="20">
         </div>
 
         <div class="flex-column">
@@ -119,7 +112,7 @@
             <img class="img-fluid" src="assets/img/iconos/candado.svg" width="20" height="20">
             <input type="password" name="confirmar_contrasena_registro" id="confirmar_contrasena_registro" class="input_login" placeholder="Confirmar contraseña" required>
             <!--TODO Hacer que funcione-->
-            <img class="img-fluid" src="assets/img/iconos/ojo.svg" width="20" height="20">
+            <img onclick="verpass(0);" class="img-fluid password" src="assets/img/iconos/ojo.svg" width="20" height="20">
           </div>
       
       <div class="flex-row"></div>
@@ -186,8 +179,28 @@
         <form id="form_grafico" onsubmit="event.preventDefault();">
           <input type="datetime-local" name="" id="fechainicio" value="2023-01-01T00:00" min="2023-01-01T00:00">
           <input type="datetime-local" name="" id="fechafin" value="2023-12-31T23:45" min="2023-01-01T00:15">
-          <select name="" id="selectGrafico" onchange="actualizarGrafico(fechainicio.value, fechafin.value, selectGrafico.value)"></select>
         </form>
+
+        <div class="container-fluid">
+          <div class="row">
+        
+            <div class="col-12">
+              <style>
+                .card {
+                  margin-top: 5px;
+                  margin-bottom: 5px;
+                }
+              </style>
+              <div class="row row-cols-1" id="huecoCardsGrafico">
+                
+                
+
+              </div>
+            </div>
+        
+          </div>
+
+      </div>
         <canvas id="contGrafico"></canvas>
       </div>
 
