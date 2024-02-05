@@ -32,7 +32,7 @@ async function actualizarTemperaturas() {
         method: "GET",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
-          "Authorization": "Bearer " + sessionStorage.getItem("token")
+          "Authorization": "Bearer " + localStorage.getItem("token")
         },
       });
       let data = await respuesta.json();

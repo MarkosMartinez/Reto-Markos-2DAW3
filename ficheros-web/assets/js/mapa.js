@@ -148,7 +148,7 @@ async function guardarLStorage() {
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
-          "Authorization": "Bearer " + sessionStorage.getItem("token")
+          "Authorization": "Bearer " + localStorage.getItem("token")
         }
       });
     }
@@ -163,7 +163,7 @@ async function obtenerLStorage() {
       method: "GET",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
-        "Authorization": "Bearer " + sessionStorage.getItem("token")
+        "Authorization": "Bearer " + localStorage.getItem("token")
       }
     });
     let data = await respuesta.json();
@@ -215,7 +215,7 @@ function comprobadorDeTabs() {
 }
 
 let tiempoFuera = 0;
-let tiempoLimite = 5000; // 5 segundos en milisegundos
+let tiempoLimite = 2000; // 2 segundos en milisegundos
 
 function comprobarTiempoFuera() {
     tiempoFuera += tiempoLimite;

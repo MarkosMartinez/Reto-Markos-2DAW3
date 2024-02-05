@@ -1,6 +1,6 @@
 var comprobandoLogin = false;
 
-if (sessionStorage.getItem("token")) {
+if (localStorage.getItem("token")) {
     comprobandoLogin = true;
     btn_login.style.opacity = 0.5;
     btn_login.disabled = true;
@@ -10,7 +10,7 @@ if (sessionStorage.getItem("token")) {
         // logueo_correcto();
         // lbl_checksesion.style.display = "none";
         // btn_login.disabled = false;
-        if (await comprobar_token(sessionStorage.getItem("token"))) {
+        if (await comprobar_token(localStorage.getItem("token"))) {
             logueo_correcto();
             lbl_checksesion.style.display = "none";
             btn_login.disabled = false;
@@ -79,7 +79,7 @@ async function loguearse(correo, contrasena) {
         let data = await respuesta.json();
         console.log(data);
         if (data["success"]) {
-            sessionStorage.setItem("token", data["data"]["token"]);
+            localStorage.setItem("token", data["data"]["token"]);
             logueo_correcto();
         } else {
             logueo_incorrecto();
@@ -113,7 +113,7 @@ async function registrarse(nombre, correo, contrasena, confirmar_contrasena) {
         let data = await respuesta.json();
         console.log(data);
         if (data["success"]) {
-            sessionStorage.setItem("token", data["data"]["token"]);
+            localStorage.setItem("token", data["data"]["token"]);
             logueo_correcto();
         } else {
             registro_incorrecto();
@@ -158,11 +158,11 @@ function registro_incorrecto() {
 }
 
 async function cerrar_sesion(tipo=0) {
-    let token_anterior = sessionStorage.getItem("token");
+    let token_anterior = localStorage.getItem("token");
     form_login.style.display = "block";
     contenido.style.display = "none";
     btn_cerrar_sesion.style.display = "none";
-    sessionStorage.clear();
+    localStorage.clear();
     localStorage.clear();
     if(tipo == 0){
     try {

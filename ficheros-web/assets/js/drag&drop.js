@@ -20,6 +20,8 @@ function soltar(evento, soltado) {
 
 function permitirSoltar(evento) {
     //Comprobar que pueda soltarlo
+    if ((evento.target.id.includes("dd_borrar") && elemento_arrastrandose.includes("card_")) ||
+    (!evento.target.id.includes("dd_borrar") && elemento_arrastrandose.includes("dd_")))
     evento.preventDefault();
   }
 
