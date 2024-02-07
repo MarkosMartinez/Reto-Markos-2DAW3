@@ -38,6 +38,10 @@ img.seleccionado {
     margin-top: 5px;
 }
 
+.humedad{
+    width: 28px;
+}
+
 .itemsdrop{
     display: none;
 }
@@ -67,6 +71,14 @@ img.seleccionado {
 .draggable{
     cursor: grab;
 }
+
+@media (max-width: 767px) {
+    #contenedor-drag-drop {
+        width: 94%;
+        margin: 0 auto;
+        text-align: center;
+    }
+  }
 
 
 /*Graficos*/

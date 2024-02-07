@@ -74,10 +74,10 @@ async function actualizarTemperaturas() {
         
                     <div class="d-flex align-items-center">
                       <div class="flex-grow-1" style="font-size: 1rem;">
-                        <div><i class="fas fa-tint fa-fw" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["humedad"]}% </span></div>
-                        <div ${ciudadls.viento ? '' : 'class="itemsdrop"'} id="${ubicacion['nombre']}_viento"><i id="card_viento-${ubicacion['nombre']}" draggable="true" ondragstart="arrastrando(event)" class="fas fa-wind fa-fw draggable" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion['viento']} km/h </span></div>
-                        <div ${ciudadls.sensacion_termica ? '' : 'class="itemsdrop"'} id="${ubicacion['nombre']}_sensacion_termica"><i id="card_sensacion_termica-${ubicacion['nombre']}" draggable="true" ondragstart="arrastrando(event)" class="fa-solid fa-thermometer draggable" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion['sensacion_termica'] ?? '--'}ºC </span></div>
-                        <div ${ciudadls.presion ? '' : 'class="itemsdrop"'} id="${ubicacion["nombre"]}_presion"><i id="card_presion-${ubicacion['nombre']}" draggable="true" ondragstart="arrastrando(event)" class="fa-solid fa-gauge-simple-low draggable" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["presion"] ?? "--"} hPa </span></div>
+                        <div><i class="fas fa-droplet-percent fa-fw fa-lg" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["humedad"]}% </span></div>
+                        <div ${ciudadls.viento ? '' : 'class="itemsdrop"'} id="${ubicacion['nombre']}_viento"><i id="card_viento-${ubicacion['nombre']}" draggable="true" ondragstart="arrastrando(event)" class="fas fa-wind fa-fw fa-lg draggable" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion['viento']} km/h </span></div>
+                        <div ${ciudadls.sensacion_termica ? '' : 'class="itemsdrop"'} id="${ubicacion['nombre']}_sensacion_termica"><div style="display: flex; align-items: center;"><div draggable="true" ondragstart="arrastrando(event)" id="card_sensacion_termica-${ubicacion['nombre']}" class="humedad draggable"><i class="fa-solid fa-person fa-lg" style="color: #868B94;"></i><i class="fa-solid fa-temperature-full" style="color: #868B94;"></i></div> <span class="ms-1"> ${ubicacion['sensacion_termica'] ?? '--'}ºC </span></div></div>
+                        <div ${ciudadls.presion ? '' : 'class="itemsdrop"'} id="${ubicacion["nombre"]}_presion"><i id="card_presion-${ubicacion['nombre']}" draggable="true" ondragstart="arrastrando(event)" class="fa-solid fa-gauge-simple-low fa-lg draggable" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["presion"] ?? "--"} mb </span></div>
                       </div>
                       <div>
                         <img onmousedown="return false" class="${obtenerClima(ubicacion["tiempo"])}" width="100px height="100px"">
@@ -166,12 +166,12 @@ function actualizarImagen() {
         img.src = 'assets/img/climas/neblina.png';
       });
         break;
-      case 'Ceniza' || 'Arena' || 'Polvo':
+      case 'Ceniza' || 'Arena' || 'Polvo' || 'Niebla':
         Array.from(imagenes).forEach(img => {
         img.src = 'assets/img/climas/polvo.png';
       });
         break;
-      case 'Nublado' || 'Niebla':
+      case 'Nublado':
         Array.from(imagenes).forEach(img => {
         img.src = 'assets/img/climas/nublado.png';
       });
@@ -208,10 +208,10 @@ function addCardLoading() {
       </div>
       <div class="d-flex align-items-center" style="padding-bottom: 15px">
         <div class="flex-grow-1" style="font-size: 1rem;">
-          <div><i class="fas fa-tint fa-fw" style="color: #868B94;"></i> <span class="ms-1"> --% </span></div>
-          <div><i class="fas fa-wind fa-fw" style="color: #868B94;"></i> <span class="ms-1"> --km/h </span></div>
-          <div><i class="fas fa-sun fa-fw" style="color: #868B94;"></i> <span class="ms-1"> --ºC </span></div>
-          <div><i class="fa-solid fa-gauge-simple-low" style="color: #868B94;"></i> <span class="ms-1"> --hPa </span></div>
+          <div><i class="fas fa-droplet-percent fa-fw fa-lg" style="color: #868B94;"></i> <span class="ms-1"> --% </span></div>
+          <div><i class="fas fa-wind fa-fw fa-lg" style="color: #868B94;"></i> <span class="ms-1"> --km/h </span></div>
+          <div><i class="fas fa-sun fa-fw fa-lg" style="color: #868B94;"></i> <span class="ms-1"> --ºC </span></div>
+          <div><i class="fa-solid fa-gauge-simple-low fa-lg" style="color: #868B94;"></i> <span class="ms-1"> --mb </span></div>
         </div>
       </div>
     </div>
