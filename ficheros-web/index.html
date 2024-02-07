@@ -54,7 +54,7 @@
 
     <!--Autenticacion-->
     <form id="form_login" class="form_login" onsubmit="event.preventDefault(); loguearse(correo_login.value, contrasena_login.value);">
-        <div id="login_incorrecto" style="display: none;">Login incorrecto!</div>
+        <div id="login_incorrecto" style="display: none;">Usuario/Contraseña no valida!</div>
         <div class="flex-column">
           <label>Email </label>
         </div>
@@ -68,8 +68,7 @@
         </div>
         <div class="inputForm">
           <img class="img-fluid" src="assets/img/iconos/candado.svg" width="20" height="20">
-          <input type="password" name="contrasena_login" id="contrasena_login" class="input_login" placeholder="Contraseña" required>
-          <!--TODO Hacer que funcione-->
+          <input type="password" name="contrasena_login" id="contrasena_login" minlength="4" class="input_login" placeholder="Contraseña" required>
           <img onclick="verpass(1);" class="img-fluid password" src="assets/img/iconos/ojo.svg" width="20" height="20">
         </div>
 
@@ -79,13 +78,13 @@
     </form>
     
     <form id="form_registro" class="form_login" style="display: none;" onsubmit="event.preventDefault(); registrarse(nombre_registro.value, correo_registro.value, contrasena_registro.value, confirmar_contrasena_registro.value);">
-      <div id="register_incorrecto" style="display: none;">Registro incorrecto!</div>
+      <div id="register_incorrecto" style="display: none;">Alguno de los datos no es valido!</div>
       <div class="flex-column">
         <label>Nombre </label>
       </div>
         <div class="inputForm">
           <img class="img-fluid" src="assets/img/iconos/nombre.svg" width="20" height="20">
-          <input type="text" name="nombre_registro" id="nombre_registro" class="input_login" placeholder="Nombre" required>
+          <input type="text" minlength="4" name="nombre_registro" id="nombre_registro" class="input_login" placeholder="Nombre" required>
         </div>
 
       <div class="flex-column">
@@ -101,8 +100,7 @@
       </div>
         <div class="inputForm">
           <img class="img-fluid" src="assets/img/iconos/candado.svg" width="20" height="20">
-          <input type="password" name="contrasena_registro" id="contrasena_registro" class="input_login" placeholder="Contraseña" required>
-          <!--TODO Hacer que funcione-->
+          <input type="password" minlength="4" name="contrasena_registro" id="contrasena_registro" class="input_login" placeholder="Contraseña" required>
           <img onclick="verpass(0);" class="img-fluid password" src="assets/img/iconos/ojo.svg" width="20" height="20">
         </div>
 
@@ -110,8 +108,7 @@
           <label>Password </label></div>
           <div class="inputForm">
             <img class="img-fluid" src="assets/img/iconos/candado.svg" width="20" height="20">
-            <input type="password" name="confirmar_contrasena_registro" id="confirmar_contrasena_registro" class="input_login" placeholder="Confirmar contraseña" required>
-            <!--TODO Hacer que funcione-->
+            <input type="password" minlength="4" name="confirmar_contrasena_registro" id="confirmar_contrasena_registro" class="input_login" placeholder="Confirmar contraseña" required>
             <img onclick="verpass(0);" class="img-fluid password" src="assets/img/iconos/ojo.svg" width="20" height="20">
           </div>
       
@@ -167,7 +164,7 @@
                 <img id="dd_viento" class="draggable itemdragable" ondragstart="arrastrando(event)" draggable="true" src="assets/img/viento.png" height="100px"></img>
                 <img id="dd_sensacion_termica" class="draggable itemdragable" draggable="true" ondragstart="arrastrando(event)" src="assets/img/sensacion_termica.png" height="100px"></img>
                 <img id="dd_presion" class="draggable itemdragable" draggable="true" ondragstart="arrastrando(event)" src="https://cdn.icon-icons.com/icons2/37/PNG/512/pressure_3151.png" height="100px"></img>
-                <div id="dd_borrar" ondrop="soltar(event, this)" onclick="vaciarDragAndDrop();" ondragover="permitirSoltar(event)"><i class="fa-solid fa-trash fa-2xl papelera" style="color: #ffffff;"></i></i></div>
+                <div id="dd_borrar" ondrop="soltar(event, this)" onclick="vaciarDragAndDrop();" ondragover="permitirSoltar(event)"><i class="fa-solid fa-trash fa-2xl papelera" id="dd_borrar_icono" style="color: #ffffff;"></i></i></div>
               </div>
           
           

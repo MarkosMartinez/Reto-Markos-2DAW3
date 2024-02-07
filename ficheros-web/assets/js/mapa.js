@@ -37,7 +37,7 @@ function cargarMapa() {
   if (!map) {
 
     // Inicializar el mapa y establecer las coordenadas y el nivel de zoom
-    map = L.map('contMapa').setView([43.338, -1.788], 12);
+    map = L.map('contMapa').setView([43.265, -2.265], 9);
     // Añadir una capa de tiles de OpenStreetMap
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors'
