@@ -13,20 +13,29 @@
 }
 
 #contenido {
-    height: 89vh;
+    min-height: 89vh;
 }
 
 img.seleccionado {
-   filter: hue-rotate(120deg);
+   filter: hue-rotate(150deg);
 }
 
 
 /*Drag and Drop*/
+
+.itemdragable{
+    border: 3px solid black;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
 #contenedor-drag-drop {
     border-radius: 50px;
     background: #ffffff;
-    height: 500px;
+    height: 335.4px;
     position: relative;
+    margin-top: 5px;
 }
 
 .itemsdrop{

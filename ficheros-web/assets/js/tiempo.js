@@ -143,47 +143,47 @@ function actualizarImagen() {
         break;
       case 'Lluvia':
         Array.from(imagenes).forEach(img => {
-          img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
+          img.src = 'assets/img/climas/lluvia.png';
         });
         break;
       case 'Tormenta':
         Array.from(imagenes).forEach(img => {
-          img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
+          img.src = 'assets/img/climas/tormenta.png';
         });
         break;
       case 'Llovizna':
         Array.from(imagenes).forEach(img => {
-          img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
+          img.src = 'assets/img/climas/llovizna.png';
         });
         break;
       case 'Nieve':
         Array.from(imagenes).forEach(img => {
-        img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
+        img.src = 'assets/img/climas/nieve.png';
       });
         break;
       case 'Neblina' || 'Humo':
         Array.from(imagenes).forEach(img => {
-        img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
+        img.src = 'assets/img/climas/neblina.png';
       });
         break;
       case 'Ceniza' || 'Arena' || 'Polvo':
         Array.from(imagenes).forEach(img => {
-        img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
+        img.src = 'assets/img/climas/polvo.png';
       });
         break;
       case 'Nublado' || 'Niebla':
         Array.from(imagenes).forEach(img => {
-        img.src = 'https://cdn.icon-icons.com/icons2/565/PNG/512/cloudy-day_icon-icons.com_54312.png';
+        img.src = 'assets/img/climas/nublado.png';
       });
         break;
       case 'Tornado':
         Array.from(imagenes).forEach(img => {
-        img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
+        img.src = 'assets/img/climas/tornado.png';
       });
         break;
       default:
         Array.from(imagenes).forEach(img => {
-          img.src = 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu1.webp';
+          img.src = 'assets/img/climas/default.png';
         });
         break;
     }

@@ -40,7 +40,6 @@ services:
       - mysql
       - laravelapiweb
   
-  #Desde aqui hacia abajo, eliminar antes de terminar
   mysql:
     image: mysql:latest
     environment:

@@ -4,3 +4,8 @@ URL FontAwesome "Pro": https://github.com/eliyantosarage/font-awesome-pro
 Hacer que el mapa este siempre en "active" al recargar la pagina?
 
 Terminar todos los TODOS y arreglar los FIXME
+
+
+URLs iconos weather:
+https://www.freepik.com/search?format=search&last_filter=query&last_value=weather&query=weather&type=icon
+https://icons8.com/icon/set/weather/fluency
