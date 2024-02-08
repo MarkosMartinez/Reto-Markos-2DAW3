@@ -49,7 +49,9 @@ async function actualizarGrafico(fechaInicio = fechainicio.value, fechaFin = fec
     contenedor.innerHTML = "";  
     JSON.parse(localStorage.getItem("seleccionadas")).forEach(function (ubicacion) {
         var nuevoDiv = document.createElement("div");
-        nuevoDiv.classList.add("col-6");
+        nuevoDiv.classList.add("col-lg-6");
+        nuevoDiv.classList.add("col-md-6");
+        nuevoDiv.classList.add("col-sm-12");
         contenedor.appendChild(nuevoDiv);
         nuevoDiv.innerHTML=`<div class="col-12">
         <div class="card" style="color: #4B515D; border-radius: 35px;">
@@ -85,7 +87,14 @@ async function actualizarGrafico(fechaInicio = fechainicio.value, fechaFin = fec
                         borderWidth: 1,
                         borderColor: colorizar(true),
                         backgroundColor: colorizar(true),
-                    },
+                    }//,
+                    // {
+                    //   label: "Humedad" + ubicacion.nombre,
+                    //     data: temperaturasZona,
+                    //     borderWidth: 1,
+                    //     borderColor: colorizar(true),
+                    //     backgroundColor: colorizar(true),
+                    // }
                 ],
             },
             options: {

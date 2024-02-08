@@ -1,5 +1,7 @@
 FROM php:8.2-cli
 
+LABEL maintainer="Markos Martinez <ikbdk@plaiaundi.net>"
+
 # Instalar dependencias del sistema
 RUN apt-get update && \
     apt-get install -y sudo curl libpng-dev libonig-dev libxml2-dev zip unzip
