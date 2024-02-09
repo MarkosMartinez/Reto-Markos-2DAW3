@@ -13,6 +13,8 @@ function cambiartab(tab){
             navmapa.style.opacity = "1"
             navtemperaturas.style.opacity = "0.5"
             navestadisticas.style.opacity = "0.5"
+
+            cargarMapa();
             break;
         case "temperaturas":
             mapapanel.style.display = "none";
@@ -22,6 +24,8 @@ function cambiartab(tab){
             navmapa.style.opacity = "0.5"
             navtemperaturas.style.opacity = "1"
             navestadisticas.style.opacity = "0.5"
+
+            eliminarMapaCargado();
             break;
         case "estadisticas":
             mapapanel.style.display = "none";
@@ -31,6 +35,8 @@ function cambiartab(tab){
             navmapa.style.opacity = "0.5"
             navtemperaturas.style.opacity = "0.5"
             navestadisticas.style.opacity = "1"
+
+            eliminarMapaCargado();
             break;
     
         default:
