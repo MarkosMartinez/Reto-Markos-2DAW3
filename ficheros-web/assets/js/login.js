@@ -132,6 +132,8 @@ async function logueo_correcto() {
     login_incorrecto.style.display = "none";
     register_incorrecto.style.disabled = "none";
     btn_cerrar_sesion.style.display = "block";
+    logo.style.display = "block";
+    navmovil.style.visibility = "visible";
     correo_login.value = "";
     contrasena_login.value = "";
     nombre_registro.value = "";
@@ -162,6 +164,8 @@ async function cerrar_sesion(tipo=0) {
     form_login.style.display = "block";
     contenido.style.display = "none";
     btn_cerrar_sesion.style.display = "none";
+    logo.style.display = "none";
+    navmovil.style.visibility = "hidden";
     localStorage.clear();
     localStorage.clear();
     if(tipo == 0){

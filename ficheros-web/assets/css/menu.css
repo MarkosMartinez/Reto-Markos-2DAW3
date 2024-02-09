@@ -1,9 +1,59 @@
-.navbar{
-    border-radius: 0 0 15px 15px;
-    background-color: rgb(223, 221, 221);
-    margin-bottom: 10px;
+#btn_cerrar_sesion{
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    width: 120px;
+    margin: auto;
+    height: 41px;
+}
+
+#logo{
+    position: absolute;
+    top: 3px;
+    left: 5px;
+    width: 60px;
+    margin: auto;
+    height: 40px;
+}
+
+#logo2{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 55px;
+    margin: auto;
+    height: 43px;
 }
 
 #contenido{
     background-color: lightblue;
+}
+
+#navmovil{
+    min-height: 55px;
+}
+
+.navbar-toggler{
+    position: absolute;
+    top: 7px;
+    right: 10px;
+}
+
+#navbarNav{
+    padding-top: 38px;
+}
+
+@media (max-width: 644px) {
+    #navmenu{
+        display: none;
+    }
+
+    #navmovil{
+        display: block !important;
+        background-color: rgb(135, 181, 233);
+    }
+
+    .btn-mapa{
+        height: 40px !important;
+    }
 }
