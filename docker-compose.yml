@@ -8,7 +8,7 @@ services:
     ports:
       - "8081:80"
     depends_on:
-      - laravelapiweb
+      - laravelapi
 
   nginx:
     image: nginx:latest
@@ -19,7 +19,7 @@ services:
     depends_on:
       - apache
 
-  laravelapiweb:
+  laravelapi:
     image: markosmartinez/laravelpassport-php8.2
     restart: unless-stopped
     volumes:
@@ -29,7 +29,7 @@ services:
     depends_on:
       - mysql
 
-  laravelapi:
+  laravelrecolector:
     image: markosmartinez/laravelpassport-php8.2
     restart: unless-stopped
     volumes:
@@ -38,7 +38,7 @@ services:
       USAR_WORKER: 1
     depends_on:
       - mysql
-      - laravelapiweb
+      - laravelapi
   
   mysql:
     image: mysql:latest

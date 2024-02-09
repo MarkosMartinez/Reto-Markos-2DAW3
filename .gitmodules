@@ -1,6 +1,6 @@
-[submodule "Reto-Markos-APIWeb"]
-	path = Reto-Markos-APIWeb
-	url = https://github.com/MarkosMartinez/Reto-Markos-APIWeb.git
-[submodule "Reto-Markos-API"]
-	path = Reto-Markos-API
-	url = https://github.com/MarkosMartinez/Reto-Markos-API
+[submodule "Reto-Laravel-Recolector"]
+	path = Reto-Laravel-Recolector
+	url = https://github.com/MarkosMartinez/Reto-Laravel-Recolector.git
+[submodule "Reto-Laravel-Api"]
+	path = Reto-Laravel-Api
+	url = https://github.com/MarkosMartinez/Reto-Laravel-Api.git
