@@ -23,7 +23,7 @@ services:
     image: markosmartinez/laravelpassport-php8.2
     restart: unless-stopped
     volumes:
-      - ./Reto-Markos-APIWeb/:/var/www/html/
+      - ./Reto-Laravel-Api/:/var/www/html/
     ports:
       - "81:8000"
     depends_on:
@@ -33,7 +33,7 @@ services:
     image: markosmartinez/laravelpassport-php8.2
     restart: unless-stopped
     volumes:
-      - ./Reto-Markos-API/:/var/www/html/
+      - ./Reto-Laravel-Recolector/:/var/www/html/
     environment:
       USAR_WORKER: 1
     depends_on:
