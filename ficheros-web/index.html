@@ -50,7 +50,7 @@
         </div>
 
         <input type="submit" id="btn_login" class="button-submit" value="Iniciar Sesión">
-        <p id="lbl_registro" class="p" onclick="cambiarauth(1)">No tienes cuenta? Registrarte!</p>
+        <p id="lbl_registro" class="p" onclick="cambiarauth(1)">No tienes cuenta? <b>Regístrate!</b></p>
         <label id="lbl_checksesion" style="display: none;"><i>Comprobando sesion...</i></label>
     </form>
     
@@ -166,9 +166,9 @@
               </div>
               <div class="col-lg-4 col-md-12" id="contenedor-drag-drop">
                 <!--TODO Ponerlos en un cuadrado negro donde encima ponga lo que es?-->
-                <img id="dd_viento" class="draggable itemdragable" ondragstart="arrastrando(event)" draggable="true" src="assets/img/viento.png" height="100px"></img>
+                <img id="dd_viento" class="draggable itemdragable" ondragstart="arrastrando(event)" draggable="true" src="assets/img/iconos/viento.png" height="100px"></img>
                 <img id="dd_sensacion_termica" class="draggable itemdragable" draggable="true" ondragstart="arrastrando(event)" src="assets/img/sensacion_termica.png" height="100px"></img>
-                <img id="dd_presion" class="draggable itemdragable" draggable="true" ondragstart="arrastrando(event)" src="https://cdn.icon-icons.com/icons2/37/PNG/512/pressure_3151.png" height="100px"></img>
+                <img id="dd_presion" class="draggable itemdragable" draggable="true" ondragstart="arrastrando(event)" src="assets/img/iconos/presion.png" height="100px"></img>
                 <div id="dd_borrar" ondrop="soltar(event, this)" onclick="vaciarDragAndDrop();" ondragover="permitirSoltar(event)"><i class="fa-solid fa-trash fa-2xl papelera" id="dd_borrar_icono" style="color: #ffffff;"></i></i></div>
               </div>
           
