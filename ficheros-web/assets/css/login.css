@@ -24,6 +24,11 @@
     color: white;
   }
 
+  #btn_registro{
+    background-color: #4d99e7;
+    color: white;
+  }
+
   body{
     background-image: url("/assets/img/fondo.jpg");
     background-repeat: no-repeat;
