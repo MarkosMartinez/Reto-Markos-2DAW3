@@ -16,9 +16,10 @@ cd /home/$USER/Reto-Markos-2DAW3
 docker-compose up -d mysql
 
 echo 'Preparando la base de datos...'
-sleep 10
+sleep 15
 
 docker-compose up -d
 sleep 5
 
 echo 'La aplicacion esta lista para usarse en http://localhost:8080'
+echo 'Puedes acceder a phpMyAdmin desde http://localhost:8080' con las credenciales sail:password
