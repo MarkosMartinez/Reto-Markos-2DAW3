@@ -1,7 +1,6 @@
 version: '3.5'
 services:
   apache:
-    #httpd:2.4
     image: httpd:latest
     volumes:
       - ./ficheros-web/:/usr/local/apache2/htdocs/
