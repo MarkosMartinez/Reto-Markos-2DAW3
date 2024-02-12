@@ -16,7 +16,7 @@ cd /home/$USER/Reto-Markos-2DAW3
 docker-compose up -d mysql
 
 echo 'Preparando la base de datos...'
-sleep 15
+sleep 20
 
 docker-compose up -d
 sleep 5
