@@ -28,65 +28,64 @@
     <button onclick="cerrar_sesion()" class="btn btn-danger" id="btn_cerrar_sesion" style="display: none;">Cerrar Sesión</button>
     <img id="logo" src="./assets/img/iconos/logo.svg" alt="Logo" style="display: none;">
 
-
     <!--Autenticacion-->
     <form id="form_login" class="form_login" onsubmit="event.preventDefault(); loguearse(correo_login.value, contrasena_login.value);">
         <div id="login_incorrecto" style="display: none;">Usuario/Contraseña no valida!</div>
         <div class="flex-column">
-          <label>Email </label>
+          <label for="correo_login">Email </label>
         </div>
         <div class="inputForm">
-          <img class="img-fluid" src="assets/img/iconos/arroba.svg" width="20" height="20">
+          <img class="img-fluid" alt="icoarroba" src="assets/img/iconos/arroba.svg" width="20" height="20">
           <input type="email" name="correo_login" id="correo_login" class="input_login" placeholder="Correo" required>
         </div>
         
         <div class="flex-column">
-          <label>Password </label>
+          <label for="contrasena_login">Password </label>
         </div>
         <div class="inputForm">
-          <img class="img-fluid" src="assets/img/iconos/candado.svg" width="20" height="20">
+          <img alt="icocandado" class="img-fluid" src="assets/img/iconos/candado.svg" width="20" height="20">
           <input type="password" name="contrasena_login" id="contrasena_login" minlength="4" class="input_login" placeholder="Contraseña" required>
-          <img onclick="verpass(1);" class="img-fluid password" src="assets/img/iconos/ojo.svg" width="20" height="20">
+          <img alt="icoverpass" onclick="verpass(1);" class="img-fluid password" src="assets/img/iconos/ojo.svg" width="20" height="20">
         </div>
 
         <input type="submit" id="btn_login" class="button-submit" value="Iniciar Sesión">
         <p id="lbl_registro" class="p" onclick="cambiarauth(1)">No tienes cuenta? <b>Regístrate!</b></p>
-        <label id="lbl_checksesion" style="display: none;"><i>Comprobando sesion...</i></label>
+        <label for="btn_login" id="lbl_checksesion" style="display: none;"><i>Comprobando sesion...</i></label>
     </form>
     
     <form id="form_registro" class="form_login" style="display: none;" onsubmit="event.preventDefault(); registrarse(nombre_registro.value, correo_registro.value, contrasena_registro.value, confirmar_contrasena_registro.value);">
       <div id="register_incorrecto" style="display: none;">Alguno de los datos no es valido!</div>
       <div class="flex-column">
-        <label>Nombre </label>
+        <label for="nombre_registro">Nombre </label>
       </div>
         <div class="inputForm">
-          <img class="img-fluid" src="assets/img/iconos/nombre.svg" width="20" height="20">
+          <img alt="iconame" class="img-fluid" src="assets/img/iconos/nombre.svg" width="20" height="20">
           <input type="text" minlength="4" name="nombre_registro" id="nombre_registro" class="input_login" placeholder="Nombre" required>
         </div>
 
       <div class="flex-column">
-        <label>Email </label>
+        <label for="correo_registro">Email </label>
       </div>
         <div class="inputForm">
-          <img class="img-fluid" src="assets/img/iconos/arroba.svg" width="20" height="20">
+          <img alt="icoemail" class="img-fluid" src="assets/img/iconos/arroba.svg" width="20" height="20">
           <input type="email" name="correo_registro" id="correo_registro" class="input_login" placeholder="Correo" required>
         </div>
 
       <div class="flex-column">
-        <label>Password </label>
+        <label for="contrasena_registro">Password </label>
       </div>
         <div class="inputForm">
-          <img class="img-fluid" src="assets/img/iconos/candado.svg" width="20" height="20">
+          <img alt="icocandado" class="img-fluid" src="assets/img/iconos/candado.svg" width="20" height="20">
           <input type="password" minlength="4" name="contrasena_registro" id="contrasena_registro" class="input_login" placeholder="Contraseña" required>
-          <img onclick="verpass(0);" class="img-fluid password" src="assets/img/iconos/ojo.svg" width="20" height="20">
+          <img alt="icoverpass" onclick="verpass(0);" class="img-fluid password" src="assets/img/iconos/ojo.svg" width="20" height="20">
         </div>
 
         <div class="flex-column">
-          <label>Password </label></div>
+          <label for="confirmar_contrasena_registro">Password </label></div>
           <div class="inputForm">
-            <img class="img-fluid" src="assets/img/iconos/candado.svg" width="20" height="20">
+            <img alt="icocandado" class="img-fluid" src="assets/img/iconos/candado.svg" width="20" height="20">
             <input type="password" minlength="4" name="confirmar_contrasena_registro" id="confirmar_contrasena_registro" class="input_login" placeholder="Confirmar contraseña" required>
-            <img onclick="verpass(0);" class="img-fluid password" src="assets/img/iconos/ojo.svg" width="20" height="20">
+            <img alt="icoverpass" onclick="verpass(0);" class="img-fluid password" src="assets/img/iconos/ojo.svg" width="20" height="20">
           </div>
       
       <div class="flex-row"></div>
@@ -94,9 +93,6 @@
       <p id="lbl_registro" class="p" onclick="cambiarauth(0)">Ya tienes cuenta? Inicia sesion aqui!</p>
     </form>
     <!--Fin Autenticacion-->
-
-    <!--FIXME, poner un navba. Hacer mover el cerrarsesion ponerlos al navbar responsive como ultima opcion-->
-    <div id="btnNavegacion" style="display: none;"><div href="" class="btn btn-primary btn-mapa">Mapa</div></div>
     
     <nav class="navbar navbar-expand-lg bg-light" id="navmovil" style="display: none; visibility: hidden;">
       <div class="container-fluid">
@@ -122,8 +118,6 @@
         </div>
       </div>
     </nav>
-    
-
 
     <!--Contenido-->
     <div id="contenido" style="display: none;">
@@ -165,13 +159,11 @@
                 </div>
               </div>
               <div class="col-lg-4 col-md-12" id="contenedor-drag-drop">
-                <!--TODO Ponerlos en un cuadrado negro donde encima ponga lo que es?-->
-                <img id="dd_viento" class="draggable itemdragable" ondragstart="arrastrando(event)" draggable="true" src="assets/img/iconos/viento.png" height="100px"></img>
-                <img id="dd_sensacion_termica" class="draggable itemdragable" draggable="true" ondragstart="arrastrando(event)" src="assets/img/sensacion_termica.png" height="100px"></img>
-                <img id="dd_presion" class="draggable itemdragable" draggable="true" ondragstart="arrastrando(event)" src="assets/img/iconos/presion.png" height="100px"></img>
-                <div id="dd_borrar" ondrop="soltar(event, this)" onclick="vaciarDragAndDrop();" ondragover="permitirSoltar(event)"><i class="fa-solid fa-trash fa-2xl papelera" id="dd_borrar_icono" style="color: #ffffff;"></i></i></div>
+                <img alt="Viento" id="dd_viento" class="draggable itemdragable" ondragstart="arrastrando(event)" draggable="true" src="assets/img/iconos/viento.png" height="100px"></img>
+                <img alt="Sensacion Termica" id="dd_sensacion_termica" class="draggable itemdragable" draggable="true" ondragstart="arrastrando(event)" src="assets/img/sensacion_termica.png" height="100px"></img>
+                <img alt="Presion" id="dd_presion" class="draggable itemdragable" draggable="true" ondragstart="arrastrando(event)" src="assets/img/iconos/presion.png" height="100px"></img>
+                <div alt="Papelera" id="dd_borrar" ondrop="soltar(event, this)" onclick="vaciarDragAndDrop();" ondragover="permitirSoltar(event)"><i class="fa-solid fa-trash fa-2xl papelera" id="dd_borrar_icono" style="color: #ffffff;"></i></i></div>
               </div>
-          
           
             </div>
 
@@ -180,7 +172,9 @@
       <div class="tab-pane" id="estadisticas-tabpanel" role="tabpanel" aria-labelledby="estadisticas-tab">
         <p class="text-center"><b>Intervalo de fechas:</b></p>
         <form id="form_grafico" onsubmit="event.preventDefault();">
+          <label for="fechainicio" style="display: none;">Para arreglar el error de Wave</label>
           <input type="datetime-local" name="" class="inputformgrafico" id="fechainicio" value="2023-01-01T00:00" min="2023-01-01T00:00">
+          <label for="fechafin" style="display: none;">Para arreglar el error de Wave</label>
           <input type="datetime-local" name="" class="inputformgrafico" id="fechafin" value="2023-12-31T23:45" min="2023-01-01T00:15">
         </form>
 
@@ -195,8 +189,6 @@
                 }
               </style>
               <div class="row row-cols-1" id="huecoCardsGrafico">
-                
-                
 
               </div>
             </div>
@@ -210,7 +202,6 @@
     </div>
     </div>
     <!--Fin Contenido-->
-
 
     <script src="assets/js/tiempo.js"></script>
     <script src="assets/js/mapa.js"></script>

@@ -56,7 +56,6 @@ async function comprobar_token(token) {
         console.error('Error:', error);
         return false;
     }
-    return false;
 }
 
 async function loguearse(correo, contrasena) {

@@ -1,7 +1,5 @@
 let elemento_arrastrandose;
 function arrastrando(evento){
-    //Guardarlo en una variable y luego vaciarla?
-    
     //console.log("Arrastrando: " + evento.target.id);
     elemento_arrastrandose = evento.target.id;
 }

@@ -2,8 +2,8 @@ var ubicaciones;
 var pronosticoMañana = [];
 obtenerPronosticoManana();
 
-
 const opciones = { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' };
+
 async function actualizarTemperaturas() {
   //console.log("Actualizando temperaturas...");
   ubicaciones = localStorage.getItem("seleccionadas");
@@ -53,7 +53,6 @@ async function actualizarTemperaturas() {
         }
 
         ciudadls = seleccionadasObj.find(function(lugar) {
-          //foreach??
           if(lugar.nombre == ubicacion["nombre"])
             return lugar;
         });
@@ -80,7 +79,7 @@ async function actualizarTemperaturas() {
                         <div ${ciudadls.presion ? '' : 'class="itemsdrop"'} id="${ubicacion["nombre"]}_presion"><i id="card_presion-${ubicacion['nombre']}" draggable="true" ondragstart="arrastrando(event)" class="fa-solid fa-gauge-simple-low fa-lg draggable" style="color: #868B94;"></i> <span class="ms-1"> ${ubicacion["presion"] ?? "--"} mb </span></div>
                       </div>
                       <div>
-                        <img onmousedown="return false" class="${obtenerClima(ubicacion["tiempo"])}" width="100px height="100px"">
+                        <img alt='imgclima' onmousedown="return false" class="${obtenerClima(ubicacion["tiempo"])}" width="100px height="100px"">
                       </div>
                     </div>
         
@@ -239,7 +238,6 @@ async function obtenerPronosticoManana() {
     })
     .done(function (response) {
 
-      //console.log(urls[i] + " " +response["forecastText"]["SPANISH"]);
       pronosticoMañana.push({ ciudad: response["regionZoneLocation"]["regionZoneLocationId"], temperatura: response["forecastText"]["SPANISH"] });
     });
   }

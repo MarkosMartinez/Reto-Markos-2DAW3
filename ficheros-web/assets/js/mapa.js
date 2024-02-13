@@ -1,4 +1,3 @@
-// Obtener las temperaturas de "lugares" para ponerlos en el tooltip
 var map;
 var lugares;
 
@@ -22,7 +21,7 @@ async function obtenerLugares() {
     return data;
   } catch (error) {
     console.error('Error:', error);
-    //En caso de error, devolver ubicaciones por defecto
+    //En caso de error, devolver algunas ubicaciones por defecto
     return [
       { "nombre": "Irun", "latitud": 43.3390, "longitud": -1.7896 },
       { "nombre": "Hondarribia", "latitud": 43.36883, "longitud": -1.79369 },
@@ -38,7 +37,6 @@ function cargarMapa() {
 
     // Inicializar el mapa y establecer las coordenadas y el nivel de zoom
     map = L.map('contMapa').setView([43.265, -2.265], 9);
-    // Añadir una capa de tiles de OpenStreetMap
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors'
     }).addTo(map);
@@ -133,13 +131,11 @@ function ubicacionSeleccionada(nombre) {
   actualizarGrafico();
 }
 
-
 async function guardarLStorage() {
   try {
     let seleccionadas = localStorage.getItem("seleccionadas");
     if (!(seleccionadas == null || seleccionadas == "" || seleccionadas == [])) {
       let seleccionadasObj = JSON.parse(seleccionadas);
-      //let ubicacionesConInfo = Object.entries(seleccionadasObj).map(([nombre, info]) => ({ nombre, ...info }));
       //console.log(seleccionadasObj);
       await fetch(laravelApi + "/api/guardar-ubicaciones", {
         method: "POST",
@@ -179,7 +175,6 @@ async function obtenerLStorage() {
     logueo_incorrecto();
   }
 }
-
 
 /* -- Sistema para descargar / cargar el mapa al estar en otras tabs --*/
 let timer;

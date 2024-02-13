@@ -3,7 +3,6 @@ function cambiartab(tab){
     let datospanel = document.getElementById("datos-tabpanel");
     let estadisticaspanel = document.getElementById("estadisticas-tabpanel")
 
-    //FIXME Hacer que por defecto se ponga en mapa y que el tab tambien cambie el active
     switch (tab) {
         case "mapa":
             mapapanel.style.display = "block";
