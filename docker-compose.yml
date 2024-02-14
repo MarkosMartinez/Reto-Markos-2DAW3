@@ -23,6 +23,12 @@ services:
     restart: unless-stopped
     volumes:
       - ./Reto-Laravel-Api/:/var/www/html/
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=reto_markos
+      - DB_USERNAME=sail
+      - DB_PASSWORD=password
     ports:
       - "81:8000"
     depends_on:
@@ -35,7 +41,12 @@ services:
     volumes:
       - ./Reto-Laravel-Recolector/:/var/www/html/
     environment:
-      USAR_WORKER: 1
+      - USAR_WORKER=1
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=reto_markos
+      - DB_USERNAME=sail
+      - DB_PASSWORD=password
     depends_on:
       - mysql
   
