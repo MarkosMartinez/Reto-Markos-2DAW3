@@ -237,8 +237,10 @@ async function obtenerPronosticoManana() {
       },
     })
     .done(function (response) {
-
+      if(response["forecastText"]["SPANISH"] != undefined)
       pronosticoMañana.push({ ciudad: response["regionZoneLocation"]["regionZoneLocationId"], temperatura: response["forecastText"]["SPANISH"] });
+      else
+      pronosticoMañana.push({ ciudad: response["regionZoneLocation"]["regionZoneLocationId"], temperatura: "No Disponible" });
     });
   }
 
